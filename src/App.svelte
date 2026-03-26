@@ -1,0 +1,679 @@
+<script lang="ts">
+        let isBrightMode = false;
+        let isNotebookModalOpen = false;
+        let notebookStep = 0;
+
+        type ToolCategory = 'todas' | 'contenido' | 'planificacion' | 'evaluacion' | 'creatividad';
+
+        const tools = [
+          {
+            name: 'NotebookLM',
+            badge: 'Destacada',
+            category: 'contenido',
+            icon: '📓',
+            description: 'Transforma documentos en resúmenes, audios y guías de estudio con IA.',
+            tags: ['resúmenes', 'podcast', 'documentos'],
+            level: 'Inicial',
+            url: 'https://notebooklm.google.com',
+            hasDemo: true,
+          },
+          {
+            name: 'ChatGPT',
+            badge: 'Popular',
+            category: 'planificacion',
+            icon: '💬',
+            description: 'Crea secuencias didácticas, consignas, rúbricas y actividades en minutos.',
+            tags: ['clases', 'ideas', 'rúbricas'],
+            level: 'Inicial',
+            url: 'https://chatgpt.com',
+            hasDemo: false,
+          },
+          {
+            name: 'Canva IA',
+            badge: 'Visual',
+            category: 'creatividad',
+            icon: '🎨',
+            description: 'Diseña láminas, presentaciones y recursos visuales listos para el aula.',
+            tags: ['diseño', 'presentaciones', 'infografías'],
+            level: 'Inicial',
+            url: 'https://www.canva.com',
+            hasDemo: false,
+          },
+          {
+            name: 'Perplexity',
+            badge: 'Investigación',
+            category: 'contenido',
+            icon: '🔎',
+            description: 'Investiga temas con fuentes citadas para construir clases con evidencia.',
+            tags: ['fuentes', 'investigación', 'citas'],
+            level: 'Intermedio',
+            url: 'https://www.perplexity.ai',
+            hasDemo: false,
+          },
+          {
+            name: 'Quizizz',
+            badge: 'Evaluación',
+            category: 'evaluacion',
+            icon: '🧠',
+            description: 'Genera evaluaciones gamificadas y seguimiento del progreso del grupo.',
+            tags: ['quizzes', 'reportes', 'gamificación'],
+            level: 'Inicial',
+            url: 'https://quizizz.com',
+            hasDemo: false,
+          },
+          {
+            name: 'MagicSchool',
+            badge: 'Docencia',
+            category: 'planificacion',
+            icon: '🪄',
+            description: 'Asistente para planificar clases, adaptar consignas y ahorrar tiempo docente.',
+            tags: ['planificación', 'adaptaciones', 'plantillas'],
+            level: 'Intermedio',
+            url: 'https://www.magicschool.ai',
+            hasDemo: false,
+          },
+        ] as const;
+
+        const stats = [
+          { value: 50, prefix: '+', suffix: '', label: 'herramientas para explorar (base escalable)' },
+          { value: 10, prefix: '', suffix: ' min', label: 'tutoriales cortos y accionables' },
+          { value: 100, prefix: '', suffix: '%', label: 'enfoque en aplicación real en aula' },
+        ] as const;
+
+        const notebookTutorialSteps = [
+          {
+            title: 'Crear tu primer Notebook',
+            description:
+              'Entrá a NotebookLM y creá un notebook con el nombre de la clase. Ejemplo: “Minería sostenible - 2° año”.',
+            tip: 'Tip: mantené un notebook por unidad temática.',
+          },
+          {
+            title: 'Cargar fuentes para trabajar',
+            description:
+              'Subí 2 a 4 fuentes: un PDF, apuntes de clase o enlaces. NotebookLM va a razonar sobre ese material.',
+            tip: 'Tip: cuanto mejor sea la fuente, mejor será la salida.',
+          },
+          {
+            title: 'Generar material didáctico',
+            description:
+              'Pedile: “creá un resumen para estudiantes”, “armá 5 preguntas de comprensión” y “proponé una actividad práctica”.',
+            tip: 'Tip: pedí variantes por nivel o tiempo de clase.',
+          },
+          {
+            title: 'Transformar en actividad lista',
+            description:
+              'Usá la salida para construir una clase corta: inicio, desarrollo y cierre con evaluación rápida.',
+            tip: 'Tip: guardá tu prompt final como plantilla reutilizable.',
+          },
+        ] as const;
+
+        const categories: { id: ToolCategory; label: string }[] = [
+          { id: 'todas', label: 'Todas' },
+          { id: 'contenido', label: 'Contenido' },
+          { id: 'planificacion', label: 'Planificación' },
+          { id: 'evaluacion', label: 'Evaluación' },
+          { id: 'creatividad', label: 'Creatividad' },
+        ];
+
+        const tutorials = [
+          {
+            step: '01',
+            title: 'Elegí una herramienta',
+            text: 'Explorá por objetivo: explicar, crear material, evaluar o investigar.',
+          },
+          {
+            step: '02',
+            title: 'Seguí el tutorial guiado',
+            text: 'Recorridos breves de 5 a 10 minutos con ejemplos reales de aula.',
+          },
+          {
+            step: '03',
+            title: 'Aplicá en clase',
+            text: 'Llevate una actividad lista para usar o adaptar a tu contexto.',
+          },
+        ];
+
+        let activeCategory: ToolCategory = 'todas';
+
+        const scrollToSection = (id: string) => {
+          const target = document.getElementById(id);
+          if (!target) return;
+
+          const offset = 92;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+          window.scrollTo({ top, behavior: 'smooth' });
+        };
+
+        const openNotebookDemo = () => {
+          notebookStep = 0;
+          isNotebookModalOpen = true;
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeNotebookDemo = () => {
+          isNotebookModalOpen = false;
+          document.body.style.overflow = '';
+        };
+
+        const nextNotebookStep = () => {
+          if (notebookStep < notebookTutorialSteps.length - 1) notebookStep += 1;
+        };
+
+        const prevNotebookStep = () => {
+          if (notebookStep > 0) notebookStep -= 1;
+        };
+
+        const revealOnScroll = (node: HTMLElement) => {
+          const transitionDelay = node.dataset.revealDelay ?? '0ms';
+          node.style.setProperty('--reveal-delay', transitionDelay);
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const delay = Number.parseInt(node.dataset.revealStartDelay ?? '120', 10);
+                  window.setTimeout(() => {
+                    node.style.setProperty('--reveal', '1');
+                  }, Number.isNaN(delay) ? 120 : delay);
+                  observer.unobserve(node);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+          );
+
+          observer.observe(node);
+
+          return {
+            destroy() {
+              observer.disconnect();
+            },
+          };
+        };
+
+        const tilt3d = (node: HTMLElement) => {
+          const maxTilt = 9;
+
+          const handleMove = (event: MouseEvent) => {
+            const rect = node.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width;
+            const py = (event.clientY - rect.top) / rect.height;
+
+            const rotY = (px - 0.5) * maxTilt * 2;
+            const rotX = (0.5 - py) * maxTilt * 2;
+
+            node.style.setProperty('--rotateX', `${rotX.toFixed(2)}deg`);
+            node.style.setProperty('--rotateY', `${rotY.toFixed(2)}deg`);
+            node.style.setProperty('--glowX', `${(px * 100).toFixed(2)}%`);
+            node.style.setProperty('--glowY', `${(py * 100).toFixed(2)}%`);
+          };
+
+          const handleLeave = () => {
+            node.style.setProperty('--rotateX', '0deg');
+            node.style.setProperty('--rotateY', '0deg');
+          };
+
+          node.addEventListener('mousemove', handleMove);
+          node.addEventListener('mouseleave', handleLeave);
+
+          return {
+            destroy() {
+              node.removeEventListener('mousemove', handleMove);
+              node.removeEventListener('mouseleave', handleLeave);
+            },
+          };
+        };
+
+        const countUp = (
+          node: HTMLElement,
+          opts: { end: number; prefix?: string; suffix?: string; duration?: number }
+        ) => {
+          const { end, prefix = '', suffix = '', duration = 1300 } = opts;
+          let raf = 0;
+
+          const startCounter = () => {
+            const start = performance.now();
+
+            const tick = (now: number) => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const value = Math.round(end * eased);
+              node.textContent = `${prefix}${value}${suffix}`;
+
+              if (progress < 1) raf = requestAnimationFrame(tick);
+            };
+
+            raf = requestAnimationFrame(tick);
+          };
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  startCounter();
+                  observer.unobserve(node);
+                }
+              });
+            },
+            { threshold: 0.45 }
+          );
+
+          observer.observe(node);
+
+          return {
+            destroy() {
+              cancelAnimationFrame(raf);
+              observer.disconnect();
+            },
+          };
+        };
+
+        const cursorGlow = (node: HTMLElement) => {
+          let raf = 0;
+          let x = window.innerWidth / 2;
+          let y = window.innerHeight / 2;
+
+          const render = () => {
+            node.style.transform = `translate3d(${x - 180}px, ${y - 180}px, 0)`;
+            raf = 0;
+          };
+
+          const move = (event: MouseEvent) => {
+            x = event.clientX;
+            y = event.clientY;
+            if (!raf) raf = requestAnimationFrame(render);
+          };
+
+          window.addEventListener('mousemove', move, { passive: true });
+
+          return {
+            destroy() {
+              window.removeEventListener('mousemove', move);
+              if (raf) cancelAnimationFrame(raf);
+            },
+          };
+        };
+
+        $: filteredTools =
+          activeCategory === 'todas' ? tools : tools.filter((tool) => tool.category === activeCategory);
+        $: notebookProgress = ((notebookStep + 1) / notebookTutorialSteps.length) * 100;
+      </script>
+
+<div class="landing min-h-screen bg-slate-950 text-white" class:bright-mode={isBrightMode}>
+  <div class="cursor-glow" use:cursorGlow></div>
+
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-mask"></div>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg">✨</span>
+        <div>
+          <p class="text-sm text-white/70">ExpoMinera 2026 · San Juan</p>
+          <p class="text-base font-semibold tracking-wide">IA Educativa</p>
+        </div>
+      </div>
+
+      <div class="hidden items-center gap-6 md:flex">
+        <button on:click={() => scrollToSection('herramientas')} class="text-sm text-white/80 hover:text-white">Herramientas</button>
+        <button on:click={() => scrollToSection('tutoriales')} class="text-sm text-white/80 hover:text-white">Tutoriales</button>
+        <button on:click={() => scrollToSection('impacto')} class="text-sm text-white/80 hover:text-white">Impacto</button>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          on:click={() => scrollToSection('herramientas')}
+          class="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 hover:scale-105"
+        >
+          Empezar ahora
+        </button>
+
+        <button
+          class="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white/90 hover:bg-white/10"
+          on:click={() => {
+            isBrightMode = !isBrightMode;
+          }}
+        >
+          {isBrightMode ? 'Modo Noche' : 'Modo Brillante'}
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="relative z-10">
+    <section class="scroll-reveal mx-auto max-w-7xl px-6 pb-16 pt-16 md:pb-24 md:pt-24" use:revealOnScroll data-reveal-start-delay="80">
+      <div class="max-w-4xl">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-xs text-white/80">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+          Plataforma educativa de IA para toda la comunidad
+        </span>
+
+        <h1 class="mt-6 text-balance text-5xl font-black leading-tight text-white md:text-7xl">
+          Descubrí y usá IA en educación
+          <span class="bg-linear-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent"> de forma simple y poderosa</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg text-white/75 md:text-xl">
+          Una landing pensada para impactar: catálogo visual de herramientas, tutoriales guiados
+          y casos de uso reales para transformar clases y aprendizaje.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <button on:click={() => scrollToSection('herramientas')} class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03]">
+            Ver herramientas
+          </button>
+          <button on:click={() => scrollToSection('tutoriales')} class="rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white hover:bg-white/10">
+            Ver tutoriales
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-4 sm:grid-cols-3">
+        {#each stats as stat, i}
+          <article class="scroll-reveal glass-card tilt-card p-5" use:tilt3d use:revealOnScroll data-reveal-delay={`${i * 120}ms`}>
+            <p class="text-3xl font-black" use:countUp={{ end: stat.value, prefix: stat.prefix, suffix: stat.suffix }}>
+              {stat.prefix}0{stat.suffix}
+            </p>
+            <p class="mt-1 text-sm text-white/70">{stat.label}</p>
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section id="herramientas" class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20" use:revealOnScroll>
+      <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-white/50">Directorio curado</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-white md:text-4xl">Herramientas destacadas</h2>
+        </div>
+      </div>
+
+      <div class="mb-8 flex flex-wrap gap-3">
+        {#each categories as category}
+          <button
+            on:click={() => {
+              activeCategory = category.id;
+            }}
+            class="rounded-full border px-4 py-2 text-sm font-medium transition {activeCategory === category.id
+              ? 'border-white bg-white text-slate-900'
+              : 'border-white/20 bg-white/5 text-white/80 hover:bg-white/10'}"
+          >
+            {category.label}
+          </button>
+        {/each}
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {#each filteredTools as tool, idx}
+          <article class="scroll-reveal glass-card tilt-card group p-5" use:tilt3d use:revealOnScroll data-reveal-delay={`${idx * 80}ms`}>
+            <div class="flex items-start justify-between">
+              <span class="text-4xl">{tool.icon}</span>
+              <span class="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/80">{tool.badge}</span>
+            </div>
+
+            <h3 class="mt-4 text-2xl font-bold text-white">{tool.name}</h3>
+            <p class="mt-2 text-sm text-white/75">{tool.description}</p>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+              {#each tool.tags as tag}
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80">{tag}</span>
+              {/each}
+            </div>
+
+            <div class="mt-6 flex items-center justify-between gap-2">
+              <span class="text-xs uppercase tracking-[0.18em] text-emerald-300">Nivel {tool.level}</span>
+              <a
+                href={tool.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:border-white hover:bg-white/10"
+              >
+                Ir al sitio
+              </a>
+            </div>
+
+            {#if tool.hasDemo}
+              <button
+                on:click={openNotebookDemo}
+                class="mt-3 w-full rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 hover:bg-cyan-400/20"
+              >
+                Ver mock interactivo de tutorial
+              </button>
+            {/if}
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section id="tutoriales" class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20" use:revealOnScroll>
+      <div class="glass-card tilt-card p-8 md:p-12" use:tilt3d>
+        <p class="text-sm uppercase tracking-[0.2em] text-white/50">Aprendizaje guiado</p>
+        <h2 class="mt-3 text-3xl font-extrabold text-white md:text-4xl">Tutoriales dentro de la app</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          Inspirado en plataformas de aprendizaje modernas: pasos cortos, visuales y orientados a
+          resultados para que cualquiera pueda empezar sin fricción.
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          {#each tutorials as item, i}
+            <article class="scroll-reveal rounded-2xl border border-white/15 bg-white/5 p-5" use:revealOnScroll data-reveal-delay={`${i * 140}ms`}>
+              <p class="text-xs tracking-[0.2em] text-amber-300">PASO {item.step}</p>
+              <h3 class="mt-2 text-xl font-bold text-white">{item.title}</h3>
+              <p class="mt-2 text-sm text-white/70">{item.text}</p>
+            </article>
+          {/each}
+        </div>
+      </div>
+    </section>
+
+    <section id="impacto" class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24" use:revealOnScroll>
+      <div class="rounded-3xl border border-white/15 bg-linear-to-r from-rose-500/20 via-orange-400/20 to-amber-300/20 p-8 md:p-12" use:tilt3d>
+        <h2 class="text-3xl font-black text-white md:text-5xl">Una experiencia que sí se siente ExpoMinera 2026</h2>
+        <p class="mt-4 max-w-3xl text-lg text-white/80">
+          Diseño inmersivo, navegación clara y foco educativo. Esta landing queda lista para crecer con
+          más IA, más tutoriales y métricas de adopción en tiempo real.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <button on:click={() => scrollToSection('herramientas')} class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03]">
+            Explorar ahora
+          </button>
+          <button on:click={openNotebookDemo} class="rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15">
+            Abrir demo de tutorial NotebookLM
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {#if isNotebookModalOpen}
+    <div class="fixed inset-0 z-100 flex items-center justify-center bg-black/70 p-4" role="dialog" aria-modal="true">
+      <div class="w-full max-w-3xl rounded-2xl border border-white/15 bg-slate-900 p-6 shadow-2xl md:p-8">
+        <div class="mb-4 flex items-center justify-between gap-4">
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] text-cyan-300">NotebookLM · Tutorial guiado</p>
+            <h3 class="mt-1 text-2xl font-bold text-white">Paso {notebookStep + 1} de {notebookTutorialSteps.length}</h3>
+          </div>
+          <button on:click={closeNotebookDemo} class="rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10">
+            Cerrar
+          </button>
+        </div>
+
+        <div class="mb-6 h-2 w-full rounded-full bg-white/10">
+          <div class="h-2 rounded-full bg-linear-to-r from-cyan-300 to-blue-400 transition-all duration-500" style={`width: ${notebookProgress}%`}></div>
+        </div>
+
+        <article class="rounded-xl border border-white/10 bg-white/5 p-6">
+          <h4 class="text-2xl font-semibold text-white">{notebookTutorialSteps[notebookStep].title}</h4>
+          <p class="mt-3 text-white/80">{notebookTutorialSteps[notebookStep].description}</p>
+          <p class="mt-4 rounded-lg border border-cyan-300/30 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+            {notebookTutorialSteps[notebookStep].tip}
+          </p>
+        </article>
+
+        <div class="mt-6 flex flex-wrap justify-between gap-3">
+          <button
+            on:click={prevNotebookStep}
+            disabled={notebookStep === 0}
+            class="rounded-lg border border-white/20 px-5 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40 hover:bg-white/10"
+          >
+            ← Anterior
+          </button>
+
+          {#if notebookStep < notebookTutorialSteps.length - 1}
+            <button on:click={nextNotebookStep} class="rounded-lg bg-white px-5 py-2 font-semibold text-slate-900 hover:scale-105">
+              Siguiente →
+            </button>
+          {:else}
+            <button on:click={closeNotebookDemo} class="rounded-lg bg-emerald-400 px-5 py-2 font-semibold text-slate-900 hover:scale-105">
+              Finalizar demo ✓
+            </button>
+          {/if}
+        </div>
+      </div>
+    </div>
+  {/if}
+</div>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    margin: 0;
+    padding: 0;
+  }
+
+  .landing {
+    position: relative;
+    isolation: isolate;
+    transition: background 320ms ease;
+  }
+
+  .bright-mode {
+    background:
+      radial-gradient(circle at 10% 20%, rgba(250, 204, 21, 0.22), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(244, 114, 182, 0.22), transparent 35%),
+      #111827;
+  }
+
+  .glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+    backdrop-filter: blur(14px);
+    border-radius: 1.2rem;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.25);
+    transition:
+      transform 280ms ease,
+      box-shadow 280ms ease,
+      border-color 280ms ease,
+      background 280ms ease;
+    transform-style: preserve-3d;
+  }
+
+  .tilt-card {
+    --rotateX: 0deg;
+    --rotateY: 0deg;
+    --glowX: 50%;
+    --glowY: 50%;
+    transform: perspective(900px) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tilt-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--glowX) var(--glowY),
+      rgba(255, 255, 255, 0.14),
+      transparent 45%
+    );
+    pointer-events: none;
+  }
+
+  .scroll-reveal {
+    --reveal: 0;
+    opacity: var(--reveal);
+    transform: translateY(calc((1 - var(--reveal)) * 26px))
+      scale(calc(0.985 + var(--reveal) * 0.015));
+    transition:
+      opacity 560ms ease,
+      transform 560ms ease;
+    will-change: transform, opacity;
+  }
+
+  .grid-mask {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at center, black 10%, transparent 75%);
+    opacity: 0.28;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(70px);
+    opacity: 0.5;
+    animation: float 13s ease-in-out infinite;
+  }
+
+  .blob-1 {
+    width: 330px;
+    height: 330px;
+    background: #fb7185;
+    top: 4%;
+    left: -70px;
+  }
+
+  .blob-2 {
+    width: 300px;
+    height: 300px;
+    background: #f59e0b;
+    top: 28%;
+    right: -80px;
+    animation-delay: 1.3s;
+  }
+
+  .blob-3 {
+    width: 250px;
+    height: 250px;
+    background: #22d3ee;
+    bottom: 9%;
+    left: 30%;
+    animation-delay: 2.2s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) scale(1);
+    }
+    50% {
+      transform: translateY(-18px) scale(1.03);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob,
+    .scroll-reveal,
+    .glass-card,
+    .tilt-card {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
