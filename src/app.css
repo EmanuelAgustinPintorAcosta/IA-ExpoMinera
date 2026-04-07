@@ -2,13 +2,13 @@
 
 :root {
   --primary-color: #c41e3a;
-  --secondary-color: #ffb81c;
+  --secondary-color: #d97706;
   --dark-color: #1a1a2e;
   --light-color: #f5f5f5;
-  --text: #333;
-  --text-light: #666;
-  --bg: #fff;
-  --border: #e0e0e0;
+  --text: #333333;
+  --text-light: #4b5563;
+  --bg: #ffffff;
+  --border: #d1d5db;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   --sans: 'Segoe UI', 'Roboto', system-ui, sans-serif;
@@ -67,7 +67,7 @@ code {
   font-size: 15px;
   line-height: 135%;
   padding: 4px 8px;
-  background: #f0f0f0;
+  background: #e5e7eb;
 }
 
 .glass {
@@ -96,17 +96,17 @@ code {
 
 .gradient-primary {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
+  color: #ffffff;
 }
 
 .gradient-dark {
   background: linear-gradient(135deg, var(--dark-color), #2d2d44);
-  color: white;
+  color: #ffffff;
 }
 
 ::selection {
   background-color: var(--primary-color);
-  color: white;
+  color: #ffffff;
 }
 
 * {

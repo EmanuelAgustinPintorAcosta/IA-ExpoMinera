@@ -81,31 +81,37 @@
         ] as const;
 
         const notebookTutorialSteps = [
-          {
-            title: 'Crear tu primer Notebook',
-            description:
-              'Entrá a NotebookLM y creá un notebook con el nombre de la clase. Ejemplo: “Minería sostenible - 2° año”.',
-            tip: 'Tip: mantené un notebook por unidad temática.',
-          },
-          {
-            title: 'Cargar fuentes para trabajar',
-            description:
-              'Subí 2 a 4 fuentes: un PDF, apuntes de clase o enlaces. NotebookLM va a razonar sobre ese material.',
-            tip: 'Tip: cuanto mejor sea la fuente, mejor será la salida.',
-          },
-          {
-            title: 'Generar material didáctico',
-            description:
-              'Pedile: “creá un resumen para estudiantes”, “armá 5 preguntas de comprensión” y “proponé una actividad práctica”.',
-            tip: 'Tip: pedí variantes por nivel o tiempo de clase.',
-          },
-          {
-            title: 'Transformar en actividad lista',
-            description:
-              'Usá la salida para construir una clase corta: inicio, desarrollo y cierre con evaluación rápida.',
-            tip: 'Tip: guardá tu prompt final como plantilla reutilizable.',
-          },
-        ] as const;
+  {
+    title: 'Crear el espacio de trabajo',
+    description: 'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
+    tip: 'Tip: Usá un bloc de notas distinto para cada unidad o proyecto para no mezclar temas.',
+    image: '/paso1.png'
+  },
+  {
+    title: 'Cargar la "materia prima"',
+    description: 'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
+    tip: 'Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.',
+    image: '/paso2.png'
+  },
+  {
+    title: 'Aprovechar el análisis automático',
+    description: 'Apenas termines de subir tus fuentes, NotebookLM genera automáticamente un "Resumen de las fuentes" y una guía de estudio inicial. Revisá este material base; es excelente para usar como introducción a la clase.',
+    tip: 'Tip: Hacé clic en "Guía de estudio" arriba a la derecha para ver preguntas frecuentes sugeridas.',
+    image: '/paso3.png'
+  },
+  {
+    title: 'Dialogar con tus documentos',
+    description: 'En la barra inferior tenés el cuadro de chat. A diferencia de ChatGPT, acá la IA solo responde basándose en los textos que vos le subiste. Pedile cosas específicas: "Armá 5 preguntas de comprensión lectora sobre el capítulo 2".',
+    tip: 'Tip: Si la IA te da un dato, te va a poner un numerito. Hacé clic ahí para ver en qué párrafo exacto de tu PDF sacó esa información.',
+    image: '/paso4.png'
+  },
+  {
+    title: 'Guardar y armar la clase',
+    description: 'Cuando la IA te devuelva un material que te sirva (una rúbrica, una consigna, un resumen), hacé clic en el ícono del pin (la chinche) en la respuesta. Esto lo guarda como una nota fija en tu panel para que la copies y pegues en tu planificación.',
+    tip: 'Tip: Juntá varias notas guardadas y pedile a la IA: "Usá estas notas para armarme la secuencia didáctica de la clase de hoy".',
+    image: '/paso5.png'
+  },
+] as const;
 
         const categories: { id: ToolCategory; label: string }[] = [
           { id: 'todas', label: 'Todas' },
@@ -347,32 +353,33 @@
   </header>
 
   <main class="relative z-10">
-    <section class="scroll-reveal mx-auto max-w-7xl px-6 pb-16 pt-16 md:pb-24 md:pt-24" use:revealOnScroll data-reveal-start-delay="80">
-      <div class="max-w-4xl">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-xs text-white/80">
-          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-          Plataforma educativa de IA para toda la comunidad
-        </span>
+    <section class="scroll-reveal mx-auto max-w-7xl px-6 pb-16 pt-8 md:pb-24 md:pt-12" use:revealOnScroll data-reveal-start-delay="80">
+     <div class="w-full flex flex-col items-start text-left">
+  <span class="mb-4 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/80">
+    <span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+    Plataforma educativa de IA para toda la comunidad
+  </span>
 
-        <h1 class="mt-6 text-balance text-5xl font-black leading-tight text-white md:text-7xl">
-          Descubrí y usá IA en educación
-          <span class="bg-linear-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent"> de forma simple y poderosa</span>
-        </h1>
+  <h1 class="w-full font-black leading-[0.9] tracking-tighter text-yellow-400!" style="font-size: 7vw;">
+    Descubrí y usá IA en Educación
+    <br />
+    <span class="text-white!"> de forma simple y poderosa</span>
+  </h1>
 
-        <p class="mt-6 max-w-2xl text-lg text-white/75 md:text-xl">
-          Una landing pensada para impactar: catálogo visual de herramientas, tutoriales guiados
-          y casos de uso reales para transformar clases y aprendizaje.
-        </p>
+  <p class="mt-8 max-w-4xl text-xl text-white/75 md:text-2xl">
+    Una landing pensada para impactar: catálogo visual de herramientas, tutoriales guiados
+    y casos de uso reales para transformar clases y aprendizaje.
+  </p>
 
-        <div class="mt-10 flex flex-wrap gap-4">
-          <button on:click={() => scrollToSection('herramientas')} class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03]">
-            Ver herramientas
-          </button>
-          <button on:click={() => scrollToSection('tutoriales')} class="rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white hover:bg-white/10">
-            Ver tutoriales
-          </button>
-        </div>
-      </div>
+  <div class="mt-10 flex w-full items-center justify-center gap-3 sm:gap-20">
+    <button on:click={() => scrollToSection('herramientas')} class="rounded-xl bg-white px-8 py-4 text-xl font-bold text-slate-900 hover:scale-[1.03] transition-all">
+      Ver herramientas
+    </button>
+    <button on:click={() => scrollToSection('tutoriales')} class="rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-xl font-bold text-white hover:bg-white/10 transition-all">
+      Ver tutoriales
+    </button>
+  </div>
+</div>
 
       <div class="mt-12 grid gap-4 sm:grid-cols-3">
         {#each stats as stat, i}
@@ -388,11 +395,11 @@
 
     <section id="herramientas" class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20" use:revealOnScroll>
       <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p class="text-sm uppercase tracking-[0.2em] text-white/50">Directorio curado</p>
-          <h2 class="mt-2 text-3xl font-extrabold text-white md:text-4xl">Herramientas destacadas</h2>
-        </div>
-      </div>
+  <div>
+    <p class="text-sm uppercase tracking-[0.2em] text-white/50">Elegidas para el aula</p>
+    <h2 class="mt-2 text-3xl font-extrabold text-white md:text-4xl">Herramientas destacadas</h2>
+  </div>
+</div>
 
       <div class="mb-8 flex flex-wrap gap-3">
         {#each categories as category}
@@ -493,52 +500,88 @@
   </main>
 
   {#if isNotebookModalOpen}
-    <div class="fixed inset-0 z-100 flex items-center justify-center bg-black/70 p-4" role="dialog" aria-modal="true">
-      <div class="w-full max-w-3xl rounded-2xl border border-white/15 bg-slate-900 p-6 shadow-2xl md:p-8">
-        <div class="mb-4 flex items-center justify-between gap-4">
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-cyan-300">NotebookLM · Tutorial guiado</p>
-            <h3 class="mt-1 text-2xl font-bold text-white">Paso {notebookStep + 1} de {notebookTutorialSteps.length}</h3>
+  <div class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true">
+    
+    <div class="flex w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/15 bg-slate-900 shadow-2xl flex-col md:flex-row">
+      
+      <div class="flex flex-col justify-between p-6 md:w-1/2 md:p-6 md:pr-8">
+        <div>
+          <div class="mb-4 flex items-center justify-between gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-cyan-200">NotebookLM · Tutorial guiado</p>
+              <h3 class="mt-1 text-xl font-bold text-white md:text-2xl">Paso {notebookStep + 1} de {notebookTutorialSteps.length}</h3>
+            </div>
+            <button on:click={closeNotebookDemo} class="md:hidden rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10">
+              Cerrar
+            </button>
           </div>
-          <button on:click={closeNotebookDemo} class="rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10">
-            Cerrar
-          </button>
+
+          <div class="mb-5 h-2 w-full rounded-full bg-white/10">
+            <div class="h-2 rounded-full bg-linear-to-r from-cyan-300 to-blue-400 transition-all duration-500" style={`width: ${notebookProgress}%`}></div>
+          </div>
+
+          <article class="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h4 class="text-xl font-semibold text-white md:text-2xl">{notebookTutorialSteps[notebookStep].title}</h4>
+            
+            <p class="mt-3 text-base leading-relaxed text-white/80 md:text-lg">
+              {notebookTutorialSteps[notebookStep].description}
+            </p>
+            
+            <div class="mt-5 rounded-xl border border-cyan-300/40 bg-cyan-400/10 p-3 md:p-4">
+              <p class="text-sm font-medium leading-relaxed text-cyan-100">
+                <span class="mr-2 text-lg">💡</span>
+                {notebookTutorialSteps[notebookStep].tip}
+              </p>
+            </div>
+          </article>
         </div>
 
-        <div class="mb-6 h-2 w-full rounded-full bg-white/10">
-          <div class="h-2 rounded-full bg-linear-to-r from-cyan-300 to-blue-400 transition-all duration-500" style={`width: ${notebookProgress}%`}></div>
-        </div>
-
-        <article class="rounded-xl border border-white/10 bg-white/5 p-6">
-          <h4 class="text-2xl font-semibold text-white">{notebookTutorialSteps[notebookStep].title}</h4>
-          <p class="mt-3 text-white/80">{notebookTutorialSteps[notebookStep].description}</p>
-          <p class="mt-4 rounded-lg border border-cyan-300/30 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-            {notebookTutorialSteps[notebookStep].tip}
-          </p>
-        </article>
-
-        <div class="mt-6 flex flex-wrap justify-between gap-3">
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
           <button
             on:click={prevNotebookStep}
             disabled={notebookStep === 0}
-            class="rounded-lg border border-white/20 px-5 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40 hover:bg-white/10"
+            class="rounded-lg border border-white/20 px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40 hover:bg-white/10"
           >
             ← Anterior
           </button>
 
           {#if notebookStep < notebookTutorialSteps.length - 1}
-            <button on:click={nextNotebookStep} class="rounded-lg bg-white px-5 py-2 font-semibold text-slate-900 hover:scale-105">
+            <button on:click={nextNotebookStep} class="rounded-lg bg-white px-5 py-2 font-semibold text-slate-900 hover:scale-105 transition-transform">
               Siguiente →
             </button>
           {:else}
-            <button on:click={closeNotebookDemo} class="rounded-lg bg-emerald-400 px-5 py-2 font-semibold text-slate-900 hover:scale-105">
+            <button on:click={closeNotebookDemo} class="rounded-lg bg-emerald-400 px-5 py-2 font-semibold text-slate-900 hover:scale-105 transition-transform">
               Finalizar demo ✓
             </button>
           {/if}
         </div>
       </div>
+
+      <div class="relative flex w-full flex-col bg-slate-950 p-6 md:w-1/2 md:items-center md:justify-center border-t border-white/10 md:border-t-0 md:border-l">
+        
+        <button on:click={closeNotebookDemo} class="absolute hidden md:block top-6 right-6 rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10 z-10">
+          ✕ Cerrar
+        </button>
+
+        <div class="w-full aspect-[4/3] rounded-xl border border-white/15 bg-slate-900 shadow-inner overflow-hidden flex items-center justify-center relative">
+          {#if notebookTutorialSteps[notebookStep].image}
+            <img
+              src={notebookTutorialSteps[notebookStep].image}
+              alt="Pantalla del paso {notebookStep + 1}"
+              class="h-full w-full object-cover object-center opacity-95 transition-opacity"
+            />
+          {:else}
+            <div class="text-center text-white/30">
+              <span class="text-4xl block mb-2">💻</span>
+              <span>Mockup Pantalla {notebookStep + 1}</span>
+            </div>
+          {/if}
+        </div>
+      </div>
+
     </div>
-  {/if}
+  </div>
+{/if}
 </div>
 
 <style>
