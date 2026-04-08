@@ -692,17 +692,21 @@
               </div>
             </div>
 
-            <div class="space-y-6">
-              <h4 class="text-4xl font-black text-white leading-tight">
-                {notebookTutorialSteps[notebookStep].title}
-              </h4>
+            <div
+              class="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-8 my-6"
+            >
+              <div class="space-y-6">
+                <h4 class="text-4xl font-black text-white leading-tight">
+                  {notebookTutorialSteps[notebookStep].title}
+                </h4>
 
-              <p class="text-xl leading-relaxed text-white/80">
-                {notebookTutorialSteps[notebookStep].description}
-              </p>
+                <p class="text-xl leading-relaxed text-white/80">
+                  {notebookTutorialSteps[notebookStep].description}
+                </p>
+              </div>
 
               <div
-                class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl mt-12"
+                class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl mt-8"
               >
                 <p
                   class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"

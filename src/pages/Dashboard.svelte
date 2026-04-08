@@ -390,11 +390,11 @@
           <div class="flex items-center justify-between mb-6">
             <div>
               <p
-                class="text-xs font-black uppercase tracking-widest text-[#c41e3a] mb-1"
+                class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
               >
-                NotebookLM · Tutorial
+                NotebookLM · Tutorial Guiado
               </p>
-              <h3 class="text-2xl font-bold text-white">Guía Interactiva</h3>
+              <h3 class="text-4xl font-bold text-white">ExpoMinera 2026</h3>
             </div>
             <button
               on:click={closeTutorial}
@@ -433,7 +433,9 @@
         </div>
 
         <!-- Step Content -->
-        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+        <div
+          class="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-8 my-6 px-8"
+        >
           <div
             class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
           >
@@ -441,15 +443,18 @@
               >PASO {tutorialStep + 1} DE {notebookTutorialSteps.length}</span
             >
           </div>
-          <h4 class="text-4xl font-black text-white mt-4 mb-6 leading-tight">
-            {notebookTutorialSteps[tutorialStep].title}
-          </h4>
-          <p class="text-xl text-white/80 leading-relaxed mb-8">
-            {notebookTutorialSteps[tutorialStep].description}
-          </p>
+          <div class="space-y-6">
+            <h4 class="text-4xl font-black text-white leading-tight">
+              {notebookTutorialSteps[tutorialStep].title}
+            </h4>
+
+            <p class="text-xl leading-relaxed text-white/80">
+              {notebookTutorialSteps[tutorialStep].description}
+            </p>
+          </div>
 
           <div
-            class="bg-blue-900/20 border border-blue-400/30 p-6 rounded-2xl relative overflow-hidden group mt-12"
+            class="bg-blue-900/20 border border-blue-400/30 p-6 rounded-2xl relative overflow-hidden group mt-8"
           >
             <div
               class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity"
