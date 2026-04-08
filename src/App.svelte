@@ -653,9 +653,10 @@
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col justify-between p-8 md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10"
+          class="flex flex-col h-full md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10"
         >
-          <div>
+          <!-- Header & Progress -->
+          <div class="p-8 border-b border-white/10 flex-none">
             <div class="mb-8 flex items-center justify-between">
               <div>
                 <p
@@ -673,7 +674,7 @@
               </button>
             </div>
 
-            <div class="mb-10">
+            <div class="mb-0">
               <div
                 class="flex justify-between text-sm mb-2 font-bold text-gray-400"
               >
@@ -691,34 +692,35 @@
                 ></div>
               </div>
             </div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+            <div class="space-y-6">
+              <h4 class="text-4xl font-black text-white leading-tight">
+                {notebookTutorialSteps[notebookStep].title}
+              </h4>
+
+              <p class="text-xl leading-relaxed text-white/80">
+                {notebookTutorialSteps[notebookStep].description}
+              </p>
+            </div>
 
             <div
-              class="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-8 my-6"
+              class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl"
             >
-              <div class="space-y-6">
-                <h4 class="text-4xl font-black text-white leading-tight">
-                  {notebookTutorialSteps[notebookStep].title}
-                </h4>
-
-                <p class="text-xl leading-relaxed text-white/80">
-                  {notebookTutorialSteps[notebookStep].description}
-                </p>
-              </div>
-
-              <div
-                class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl mt-8"
+              <p
+                class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
               >
-                <p
-                  class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
-                >
-                  <span class="text-2xl">💡</span>
-                  {notebookTutorialSteps[notebookStep].tip}
-                </p>
-              </div>
+                <span class="text-2xl">💡</span>
+                {notebookTutorialSteps[notebookStep].tip}
+              </p>
             </div>
           </div>
 
-          <div class="mt-12 flex items-center justify-between gap-4">
+          <!-- Navigation Buttons -->
+          <div
+            class="p-8 border-t border-white/10 flex-none flex items-center justify-between gap-4"
+          >
             <button
               on:click={prevNotebookStep}
               disabled={notebookStep === 0}

@@ -385,16 +385,15 @@
       <div
         class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10 flex flex-col"
       >
-        <!-- Header Info -->
-        <div class="p-8 border-b border-white/10">
-          <div class="flex items-center justify-between mb-6">
+        <div class="p-8 border-b border-white/10 flex-none">
+          <div class="flex items-center justify-between mb-8">
             <div>
               <p
                 class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
               >
                 NotebookLM · Tutorial Guiado
               </p>
-              <h3 class="text-4xl font-bold text-white">ExpoMinera 2026</h3>
+              <h3 class="text-2xl font-bold text-white">ExpoMinera 2026</h3>
             </div>
             <button
               on:click={closeTutorial}
@@ -432,10 +431,7 @@
           </div>
         </div>
 
-        <!-- Step Content -->
-        <div
-          class="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-8 my-6 px-8"
-        >
+        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
           <div
             class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
           >
@@ -453,24 +449,19 @@
             </p>
           </div>
 
-          <div
-            class="bg-blue-900/20 border border-blue-400/30 p-6 rounded-2xl relative overflow-hidden group mt-8"
-          >
-            <div
-              class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity"
-            >
-              <span class="text-4xl text-blue-400">💡</span>
-            </div>
+          <div class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl">
             <p
-              class="text-base font-medium relative z-10 leading-relaxed text-blue-100"
+              class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
             >
+              <span class="text-2xl">💡</span>
               {notebookTutorialSteps[tutorialStep].tip}
             </p>
           </div>
         </div>
 
-        <!-- Navigation -->
-        <div class="p-8 bg-slate-950/50 border-t border-white/10 flex gap-4">
+        <div
+          class="p-8 bg-slate-950/50 border-t border-white/10 flex-none flex gap-4"
+        >
           <button
             on:click={prevStep}
             disabled={tutorialStep === 0}
