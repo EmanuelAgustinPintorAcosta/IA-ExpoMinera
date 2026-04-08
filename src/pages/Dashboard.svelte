@@ -152,18 +152,20 @@
     </svelte:fragment>
   </Header>
 
-  <main class="max-w-7xl mx-auto px-4 py-12">
-    <div class="glass rounded-xl p-8 mb-12 gradient-dark text-white">
-      <h2 class="text-3xl font-bold mb-2 text-white">
+  <main
+    class="w-full max-w-[1920px] 2xl:max-w-[95%] mx-auto px-4 md:px-8 py-12 2xl:py-16"
+  >
+    <div class="glass rounded-xl p-8 2xl:p-14 mb-12 gradient-dark text-white">
+      <h2 class="text-3xl 2xl:text-5xl font-bold mb-2 2xl:mb-6 text-white">
         Hola, {$currentUser.name}! 👋
       </h2>
-      <p class="text-lg text-white mb-6">
+      <p class="text-lg 2xl:text-2xl text-white mb-6 2xl:mb-10 max-w-5xl">
         {$currentUser.role === "teacher"
           ? "Descubre herramientas de IA para mejorar tu enseñanza y crear material educativo innovador."
           : "Aprende a usar herramientas de IA para potenciar tu aprendizaje y creatividad."}
       </p>
 
-      <div class="grid md:grid-cols-3 gap-4">
+      <div class="grid md:grid-cols-3 gap-4 2xl:gap-8">
         <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
           <div class="text-3xl font-bold mb-1">6+</div>
           <p class="text-sm text-white/90">Herramientas disponibles</p>
@@ -243,14 +245,16 @@
       </div>
     </div>
 
-    <div class="mb-6">
-      <p class="text-gray-800">
+    <div class="mb-6 2xl:mb-10">
+      <p class="text-gray-800 2xl:text-xl">
         Mostrando <strong class="text-gray-900">{filteredTools.length}</strong>
         {filteredTools.length === 1 ? "herramienta" : "herramientas"}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 2xl:gap-10"
+    >
       {#each filteredTools as tool (tool.id)}
         <ToolCard {tool} onClick={() => selectTool(tool)} />
       {/each}
@@ -273,9 +277,9 @@
     onBack={goBack}
   />
 
-  <main class="max-w-4xl mx-auto px-4 py-12">
-    <div class="glass rounded-xl p-8 mb-8 bg-white/95">
-      <div class="grid md:grid-cols-3 gap-8">
+  <main class="w-full max-w-4xl 2xl:max-w-7xl mx-auto px-4 py-12 2xl:py-20">
+    <div class="glass rounded-xl p-8 2xl:p-14 mb-8 bg-white/95">
+      <div class="grid md:grid-cols-3 gap-8 2xl:gap-16">
         <div>
           <div class="text-7xl mb-6">{selectedTool.icon}</div>
           <div class="space-y-4">
