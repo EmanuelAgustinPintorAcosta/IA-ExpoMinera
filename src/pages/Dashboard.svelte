@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { fade, scale } from "svelte/transition";
   import {
     currentUser,
     aiTools,
@@ -53,6 +54,46 @@
     },
   ];
 
+  let isTutorialOpen = false;
+  let tutorialStep = 0;
+  const notebookTutorialSteps = [
+    {
+      title: "Crear el espacio de trabajo",
+      description:
+        'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
+      tip: "Tip: Usá un bloc de notas distinto para cada unidad o proyecto para no mezclar temas.",
+      image: "/paso1.png",
+    },
+    {
+      title: 'Cargar la "materia prima"',
+      description:
+        'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
+      tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
+      image: "/paso2.png",
+    },
+    {
+      title: "Aprovechar el análisis automático",
+      description:
+        'Apenas termines de subir tus fuentes, NotebookLM genera automáticamente un "Resumen de las fuentes" y una guía de estudio inicial. Revisá este material base; es excelente para usar como introducción a la clase.',
+      tip: 'Tip: Hacé clic en "Guía de estudio" arriba a la derecha para ver preguntas frecuentes sugeridas.',
+      image: "/paso3.png",
+    },
+    {
+      title: "Dialogar con tus documentos",
+      description:
+        'En la barra inferior tenés el cuadro de chat. A diferencia de ChatGPT, acá la IA solo responde basándose en los textos que vos le subiste. Pedile cosas específicas: "Armá 5 preguntas de comprensión lectora sobre el capítulo 2".',
+      tip: "Tip: Si la IA te da un dato, te va a poner un numerito. Hacé clic ahí para ver en qué párrafo exacto de tu PDF sacó esa información.",
+      image: "/paso4.png",
+    },
+    {
+      title: "Guardar y armar la clase",
+      description:
+        "Cuando la IA te devuelva un material que te sirva (una rúbrica, una consigna, un resumen), hacé clic en el ícono del pin (la chinche) en la respuesta. Esto lo guarda como una nota fija en tu panel para que la copies y pegues en tu planificación.",
+      tip: 'Tip: Juntá varias notas guardadas y pedile a la IA: "Usá estas notas para armarme la secuencia didáctica de la clase de hoy".',
+      image: "/paso5.png",
+    },
+  ];
+
   function selectTool(tool: AITool) {
     selectedTool = tool;
     currentPage = "tools";
@@ -62,6 +103,28 @@
     currentPage = "dashboard";
     selectedTool = null;
   }
+
+  function openTutorial() {
+    isTutorialOpen = true;
+    tutorialStep = 0;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeTutorial() {
+    isTutorialOpen = false;
+    document.body.style.overflow = "";
+  }
+
+  function nextStep() {
+    if (tutorialStep < notebookTutorialSteps.length - 1) tutorialStep++;
+  }
+
+  function prevStep() {
+    if (tutorialStep > 0) tutorialStep--;
+  }
+
+  $: tutorialProgress =
+    ((tutorialStep + 1) / notebookTutorialSteps.length) * 100;
 </script>
 
 {#if !$currentUser}
@@ -296,6 +359,7 @@
               Visitar Sitio Oficial →
             </a>
             <button
+              on:click={openTutorial}
               class="flex-1 py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
                      hover:bg-[#c41e3a] hover:text-white transition-all"
             >
@@ -307,3 +371,195 @@
     </div>
   </main>
 {/if}
+
+{#if isTutorialOpen}
+  <div
+    class="fixed inset-0 z-[200] bg-black/90 p-4 md:p-8 flex items-center justify-center backdrop-blur-sm"
+    transition:fade={{ duration: 250 }}
+  >
+    <div
+      class="w-full h-full bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl rounded-3xl border border-white/10"
+      transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
+    >
+      <!-- Left Sidebar: Instructions -->
+      <div
+        class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10 flex flex-col"
+      >
+        <!-- Header Info -->
+        <div class="p-8 border-b border-white/10">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p
+                class="text-xs font-black uppercase tracking-widest text-[#c41e3a] mb-1"
+              >
+                NotebookLM · Tutorial
+              </p>
+              <h3 class="text-2xl font-bold text-white">Guía Interactiva</h3>
+            </div>
+            <button
+              on:click={closeTutorial}
+              aria-label="Cerrar tutorial"
+              class="p-2 hover:bg-white/10 rounded-lg transition-colors text-white/70 hover:text-white"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex justify-between text-sm font-bold">
+              <span class="text-white/60">Progreso del paso</span>
+              <span class="text-[#c41e3a]">{Math.round(tutorialProgress)}%</span
+              >
+            </div>
+            <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+              <div
+                class="h-full bg-[#c41e3a] transition-all duration-500"
+                style="width: {tutorialProgress}%"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step Content -->
+        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+          <div
+            class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
+          >
+            <span class="text-xs font-bold text-[#c41e3a]"
+              >PASO {tutorialStep + 1} DE {notebookTutorialSteps.length}</span
+            >
+          </div>
+          <h4 class="text-4xl font-black text-white mt-4 mb-6 leading-tight">
+            {notebookTutorialSteps[tutorialStep].title}
+          </h4>
+          <p class="text-xl text-white/80 leading-relaxed mb-8">
+            {notebookTutorialSteps[tutorialStep].description}
+          </p>
+
+          <div
+            class="bg-blue-900/20 border border-blue-400/30 p-6 rounded-2xl relative overflow-hidden group mt-12"
+          >
+            <div
+              class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity"
+            >
+              <span class="text-4xl text-blue-400">💡</span>
+            </div>
+            <p
+              class="text-base font-medium relative z-10 leading-relaxed text-blue-100"
+            >
+              {notebookTutorialSteps[tutorialStep].tip}
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="p-8 bg-slate-950/50 border-t border-white/10 flex gap-4">
+          <button
+            on:click={prevStep}
+            disabled={tutorialStep === 0}
+            class="flex-1 py-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 disabled:opacity-20 disabled:cursor-not-allowed transition-all"
+          >
+            Anterior
+          </button>
+
+          {#if tutorialStep < notebookTutorialSteps.length - 1}
+            <button
+              on:click={nextStep}
+              class="flex-2 py-4 px-8 rounded-xl bg-white text-slate-950 font-black hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/5"
+            >
+              Siguiente →
+            </button>
+          {:else}
+            <button
+              on:click={closeTutorial}
+              class="flex-2 py-4 px-8 rounded-xl bg-emerald-500 text-slate-950 font-black hover:scale-[1.02] active:scale-95 transition-all"
+            >
+              Finalizar Tutorial
+            </button>
+          {/if}
+        </div>
+      </div>
+
+      <!-- Right Side: Interactive Area / Image -->
+      <div
+        class="flex-1 bg-black relative flex items-center justify-center p-0 overflow-hidden"
+      >
+        <!-- Background pattern -->
+        <div
+          class="absolute inset-0 opacity-10 pointer-events-none"
+          style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"
+        ></div>
+
+        <!-- Close button for desktop -->
+        <button
+          on:click={closeTutorial}
+          class="absolute top-8 right-8 z-50 hidden md:flex items-center gap-3 px-5 py-2.5 bg-slate-900/80 hover:bg-slate-800 border border-white/10 rounded-full text-white font-bold transition-all backdrop-blur-md"
+        >
+          <span class="text-sm">Salir del tutorial</span>
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div class="w-full h-full relative p-4 md:p-12">
+          <div
+            class="relative w-full h-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-white/5"
+          >
+            {#if notebookTutorialSteps[tutorialStep].image}
+              <img
+                src={notebookTutorialSteps[tutorialStep].image}
+                alt="Escena del tutorial"
+                class="w-full h-full object-contain select-none"
+              />
+            {:else}
+              <div
+                class="w-full h-full flex flex-col items-center justify-center text-white/20"
+              >
+                <span class="text-[10rem] mb-4">💻</span>
+                <span class="text-2xl font-bold">Sin previsualización</span>
+              </div>
+            {/if}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{/if}
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+</style>

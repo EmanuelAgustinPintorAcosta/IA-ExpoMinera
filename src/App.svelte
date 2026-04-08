@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade, scale } from "svelte/transition";
   let isBrightMode = false;
   let isNotebookModalOpen = false;
   let notebookStep = 0;
@@ -641,66 +642,83 @@
 
   {#if isNotebookModalOpen}
     <div
-      class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-[100] bg-black/90 p-4 md:p-10 flex items-center justify-center backdrop-blur-md"
       role="dialog"
       aria-modal="true"
+      transition:fade={{ duration: 250 }}
     >
       <div
-        class="flex w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/15 bg-slate-900 shadow-2xl flex-col md:flex-row"
+        class="w-full h-full bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl rounded-3xl border border-white/10"
+        transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
-        <div class="flex flex-col justify-between p-6 md:w-1/2 md:p-6 md:pr-8">
+        <!-- Left Sidebar: Instructions -->
+        <div
+          class="flex flex-col justify-between p-8 md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10"
+        >
           <div>
-            <div class="mb-4 flex items-center justify-between gap-4">
+            <div class="mb-8 flex items-center justify-between">
               <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-cyan-200">
-                  NotebookLM · Tutorial guiado
+                <p
+                  class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
+                >
+                  NotebookLM · Tutorial Guiado
                 </p>
-                <h3 class="mt-1 text-xl font-bold text-white md:text-2xl">
-                  Paso {notebookStep + 1} de {notebookTutorialSteps.length}
-                </h3>
+                <h3 class="text-2xl font-bold text-white">ExpoMinera 2026</h3>
               </div>
               <button
                 on:click={closeNotebookDemo}
-                class="md:hidden rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10"
+                class="md:hidden text-2xl text-white/70"
               >
-                Cerrar
+                ✕
               </button>
             </div>
 
-            <div class="mb-5 h-2 w-full rounded-full bg-white/10">
+            <div class="mb-10">
               <div
-                class="h-2 rounded-full bg-linear-to-r from-cyan-300 to-blue-400 transition-all duration-500"
-                style={`width: ${notebookProgress}%`}
-              ></div>
+                class="flex justify-between text-sm mb-2 font-bold text-gray-400"
+              >
+                <span>Progreso</span>
+                <span
+                  >Paso {notebookStep + 1} / {notebookTutorialSteps.length}</span
+                >
+              </div>
+              <div
+                class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full bg-linear-to-r from-cyan-300 to-blue-400 transition-all duration-500"
+                  style={`width: ${notebookProgress}%`}
+                ></div>
+              </div>
             </div>
 
-            <article class="rounded-xl border border-white/10 bg-white/5 p-5">
-              <h4 class="text-xl font-semibold text-white md:text-2xl">
+            <div class="space-y-6">
+              <h4 class="text-4xl font-black text-white leading-tight">
                 {notebookTutorialSteps[notebookStep].title}
               </h4>
 
-              <p
-                class="mt-3 text-base leading-relaxed text-white/80 md:text-lg"
-              >
+              <p class="text-xl leading-relaxed text-white/80">
                 {notebookTutorialSteps[notebookStep].description}
               </p>
 
               <div
-                class="mt-5 rounded-xl border border-cyan-300/40 bg-cyan-400/10 p-3 md:p-4"
+                class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl mt-12"
               >
-                <p class="text-sm font-medium leading-relaxed text-cyan-100">
-                  <span class="mr-2 text-lg">💡</span>
+                <p
+                  class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
+                >
+                  <span class="text-2xl">💡</span>
                   {notebookTutorialSteps[notebookStep].tip}
                 </p>
               </div>
-            </article>
+            </div>
           </div>
 
-          <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <div class="mt-12 flex items-center justify-between gap-4">
             <button
               on:click={prevNotebookStep}
               disabled={notebookStep === 0}
-              class="rounded-lg border border-white/20 px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40 hover:bg-white/10"
+              class="flex-1 py-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
               ← Anterior
             </button>
@@ -708,46 +726,53 @@
             {#if notebookStep < notebookTutorialSteps.length - 1}
               <button
                 on:click={nextNotebookStep}
-                class="rounded-lg bg-white px-5 py-2 font-semibold text-slate-900 hover:scale-105 transition-transform"
+                class="flex-1 py-4 px-6 rounded-xl bg-white text-slate-950 font-black hover:scale-105 transition-all"
               >
                 Siguiente →
               </button>
             {:else}
               <button
                 on:click={closeNotebookDemo}
-                class="rounded-lg bg-emerald-400 px-5 py-2 font-semibold text-slate-900 hover:scale-105 transition-transform"
+                class="flex-1 py-4 px-6 rounded-xl bg-emerald-400 text-slate-950 font-black hover:scale-105 transition-all"
               >
-                Finalizar demo ✓
+                Finalizar ✓
               </button>
             {/if}
           </div>
         </div>
 
+        <!-- Right Side: Visual Mockup -->
         <div
-          class="relative flex w-full flex-col bg-slate-950 p-6 md:w-1/2 md:items-center md:justify-center border-t border-white/10 md:border-t-0 md:border-l"
+          class="relative flex-1 bg-black flex items-center justify-center p-0 md:p-12 overflow-hidden"
         >
           <button
             on:click={closeNotebookDemo}
-            class="absolute hidden md:block top-6 right-6 rounded-lg border border-white/20 px-3 py-2 text-sm text-white/80 hover:bg-white/10 z-10"
+            class="absolute top-8 right-8 hidden md:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white font-bold transition-all z-10 border border-white/10"
           >
-            ✕ Cerrar
+            ✕ Cerrar tutorial
           </button>
 
-          <div
-            class="w-full aspect-[4/3] rounded-xl border border-white/15 bg-slate-900 shadow-inner overflow-hidden flex items-center justify-center relative"
-          >
-            {#if notebookTutorialSteps[notebookStep].image}
-              <img
-                src={notebookTutorialSteps[notebookStep].image}
-                alt="Pantalla del paso {notebookStep + 1}"
-                class="h-full w-full object-cover object-center opacity-95 transition-opacity"
-              />
-            {:else}
-              <div class="text-center text-white/30">
-                <span class="text-4xl block mb-2">💻</span>
-                <span>Mockup Pantalla {notebookStep + 1}</span>
-              </div>
-            {/if}
+          <div class="w-full h-full relative p-4 md:p-12">
+            <div
+              class="relative w-full h-full bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-white/5"
+            >
+              {#if notebookTutorialSteps[notebookStep].image}
+                <img
+                  src={notebookTutorialSteps[notebookStep].image}
+                  alt="Pantalla del paso {notebookStep + 1}"
+                  class="w-full h-full object-contain opacity-95 select-none"
+                />
+              {:else}
+                <div
+                  class="w-full h-full flex flex-col items-center justify-center text-white/20"
+                >
+                  <span class="text-[10rem] mb-4">💻</span>
+                  <span class="text-2xl font-bold"
+                    >Mockup Pantalla {notebookStep + 1}</span
+                  >
+                </div>
+              {/if}
+            </div>
           </div>
         </div>
       </div>
