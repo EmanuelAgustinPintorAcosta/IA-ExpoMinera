@@ -363,19 +363,25 @@
   <header
     class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl"
   >
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-      <div class="flex items-center gap-3">
+    <nav
+      class="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-4"
+    >
+      <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
         <span
-          class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg"
+          class="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
           >✨</span
         >
-        <div>
-          <p class="text-sm text-white/70">ExpoMinera 2026 · San Juan</p>
-          <p class="text-base font-semibold tracking-wide">IA Educativa</p>
+        <div class="flex-shrink min-w-0 pr-2">
+          <p class="text-xs md:text-sm text-white/70 truncate">
+            ExpoMinera 2026 · San Juan
+          </p>
+          <p class="text-sm md:text-base font-semibold tracking-wide truncate">
+            IA Educativa
+          </p>
         </div>
       </div>
 
-      <div class="hidden items-center gap-6 md:flex">
+      <div class="hidden items-center gap-6 lg:flex flex-shrink-0">
         <button
           on:click={() => scrollToSection("impacto")}
           class="text-sm text-white/80 hover:text-white">Impacto</button
@@ -390,21 +396,24 @@
         >
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 md:gap-3 flex-shrink-0">
         <button
           on:click={() => scrollToSection("herramientas")}
-          class="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 hover:scale-105"
+          class="rounded-full bg-white px-3 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:scale-105 whitespace-nowrap transition-all"
         >
           Empezar ahora
         </button>
 
         <button
-          class="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white/90 hover:bg-white/10"
+          class="rounded-full border border-white/20 bg-white/5 px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold text-white/90 hover:bg-white/10 whitespace-nowrap transition-all flex items-center justify-center gap-1"
           on:click={() => {
             isBrightMode = !isBrightMode;
           }}
         >
-          {isBrightMode ? "Modo Noche" : "Modo Brillante"}
+          <span>{isBrightMode ? "🌞" : "✨"}</span>
+          <span class="hidden sm:inline"
+            >{isBrightMode ? "Noche" : "Brillante"}</span
+          >
         </button>
       </div>
     </nav>
@@ -424,13 +433,17 @@
           Plataforma educativa de IA para toda la comunidad
         </span>
 
-        <h1
-          class="w-full font-black leading-[0.9] tracking-tighter text-yellow-400!"
-          style="font-size: 7vw;"
-        >
-          Descubrí y usá IA en Educación
-          <br />
-          <span class="text-white!"> de forma simple y poderosa</span>
+        <h1 class="w-full font-black tracking-tighter">
+          <span
+            class="text-yellow-400 block leading-[1.05] text-[11vw] sm:text-[9vw] md:text-[8vw]"
+          >
+            Descubrí y usá IA en Educación
+          </span>
+          <span
+            class="text-white block mt-4 md:mt-6 leading-[1.05] text-[7vw] sm:text-[6vw] md:text-[5vw]"
+          >
+            de forma simple y poderosa
+          </span>
         </h1>
 
         <p class="mt-8 max-w-4xl text-xl text-white/75 md:text-2xl">
@@ -440,17 +453,17 @@
         </p>
 
         <div
-          class="mt-10 flex w-full items-center justify-center gap-3 sm:gap-20"
+          class="mt-10 flex flex-col sm:flex-row w-full items-center justify-center gap-4 sm:gap-8 md:gap-16"
         >
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="rounded-xl bg-white px-8 py-4 text-xl font-bold text-slate-900 hover:scale-[1.03] transition-all"
+            class="w-full sm:w-auto rounded-xl bg-white px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-slate-900 hover:scale-[1.03] transition-all whitespace-nowrap"
           >
             Ver herramientas
           </button>
           <button
             on:click={() => scrollToSection("tutoriales")}
-            class="rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-xl font-bold text-white hover:bg-white/10 transition-all"
+            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-white hover:bg-white/10 transition-all whitespace-nowrap"
           >
             Ver tutoriales
           </button>
@@ -499,16 +512,16 @@
           adopción en tiempo real.
         </p>
 
-        <div class="mt-8 flex flex-wrap gap-4">
+        <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03]"
+            class="w-full sm:w-auto rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03] transition-all"
           >
             Explorar ahora
           </button>
           <button
             on:click={openNotebookDemo}
-            class="rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15"
+            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15 transition-all"
           >
             Abrir demo de tutorial NotebookLM
           </button>
@@ -518,7 +531,7 @@
 
     <section
       id="tutoriales"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20"
+      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24 md:pb-32"
       use:revealOnScroll
     >
       <div class="glass-card tilt-card p-8 md:p-12" use:tilt3d>
@@ -557,8 +570,8 @@
       class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20"
       use:revealOnScroll
     >
-      <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
+      <div class="glass-card p-6 md:p-8 mb-8">
+        <div class="mb-6">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             Elegidas para el aula
           </p>
@@ -566,22 +579,22 @@
             Herramientas destacadas
           </h2>
         </div>
-      </div>
 
-      <div class="mb-8 flex flex-wrap gap-3">
-        {#each categories as category}
-          <button
-            on:click={() => {
-              activeCategory = category.id;
-            }}
-            class="rounded-full border px-4 py-2 text-sm font-medium transition {activeCategory ===
-            category.id
-              ? 'border-white bg-white text-slate-900'
-              : 'border-white/20 bg-white/5 text-white/80 hover:bg-white/10'}"
-          >
-            {category.label}
-          </button>
-        {/each}
+        <div class="flex flex-wrap gap-2 md:gap-3">
+          {#each categories as category}
+            <button
+              on:click={() => {
+                activeCategory = category.id;
+              }}
+              class="rounded-full border px-4 py-2 text-xs md:text-sm font-medium transition {activeCategory ===
+              category.id
+                ? 'border-white bg-white text-slate-900'
+                : 'border-white/20 bg-white/5 text-white/80 hover:bg-white/10'}"
+            >
+              {category.label}
+            </button>
+          {/each}
+        </div>
       </div>
 
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -642,33 +655,36 @@
 
   {#if isNotebookModalOpen}
     <div
-      class="fixed inset-0 z-[100] bg-black/90 p-4 md:p-10 flex items-center justify-center backdrop-blur-md"
+      class="fixed inset-0 z-[100] bg-black/90 p-0 md:p-10 flex items-center justify-center backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       transition:fade={{ duration: 250 }}
     >
       <div
-        class="w-full h-full bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl rounded-3xl border border-white/10"
+        class="w-full h-full max-h-screen bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
         transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col h-full md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10"
+          class="flex flex-col flex-1 md:flex-none h-full w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
         >
           <!-- Header & Progress -->
-          <div class="p-8 border-b border-white/10 flex-none">
-            <div class="mb-8 flex items-center justify-between">
+          <div class="p-4 md:p-8 border-b border-white/10 flex-none">
+            <div class="mb-4 md:mb-8 flex items-center justify-between">
               <div>
                 <p
                   class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
                 >
-                  NotebookLM · Tutorial Guiado
+                  NotebookLM · Guiado
                 </p>
-                <h3 class="text-2xl font-bold text-white">ExpoMinera 2026</h3>
+                <h3 class="text-xl md:text-2xl font-bold text-white">
+                  ExpoMinera 2026
+                </h3>
               </div>
               <button
                 on:click={closeNotebookDemo}
-                class="md:hidden text-2xl text-white/70"
+                class="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                aria-label="Cerrar tutorial"
               >
                 ✕
               </button>
@@ -694,37 +710,54 @@
             </div>
           </div>
 
-          <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
-            <div class="space-y-6">
-              <h4 class="text-4xl font-black text-white leading-tight">
+          <div
+            class="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-6 md:space-y-8"
+          >
+            <div class="space-y-4 md:space-y-6">
+              <h4
+                class="text-2xl md:text-4xl font-black text-white leading-tight"
+              >
                 {notebookTutorialSteps[notebookStep].title}
               </h4>
 
-              <p class="text-xl leading-relaxed text-white/80">
+              <p class="text-base md:text-xl leading-relaxed text-white/80">
                 {notebookTutorialSteps[notebookStep].description}
               </p>
             </div>
 
             <div
-              class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl"
+              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl"
             >
               <p
-                class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
+                class="text-sm md:text-base font-medium leading-relaxed text-cyan-100 flex gap-2 md:gap-3"
               >
-                <span class="text-2xl">💡</span>
+                <span class="text-xl md:text-2xl shrink-0">💡</span>
                 {notebookTutorialSteps[notebookStep].tip}
               </p>
             </div>
+
+            <!-- Imagen inline para móviles (debajo del tip) -->
+            {#if notebookTutorialSteps[notebookStep].image}
+              <div
+                class="block md:hidden w-full mt-4 rounded-xl overflow-hidden border border-white/10 bg-slate-800 shadow-inner"
+              >
+                <img
+                  src={notebookTutorialSteps[notebookStep].image}
+                  alt="Pantalla del paso {notebookStep + 1}"
+                  class="w-full h-auto max-h-[300px] object-contain select-none"
+                />
+              </div>
+            {/if}
           </div>
 
           <!-- Navigation Buttons -->
           <div
-            class="p-8 border-t border-white/10 flex-none flex items-center justify-between gap-4"
+            class="p-4 md:p-8 border-t border-white/10 flex-none flex items-center justify-between gap-2 md:gap-4"
           >
             <button
               on:click={prevNotebookStep}
               disabled={notebookStep === 0}
-              class="flex-1 py-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              class="flex-1 py-3 md:py-4 border rounded-xl border-white/20 text-white font-bold text-sm md:text-base hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
               ← Anterior
             </button>
@@ -732,14 +765,14 @@
             {#if notebookStep < notebookTutorialSteps.length - 1}
               <button
                 on:click={nextNotebookStep}
-                class="flex-1 py-4 px-6 rounded-xl bg-white text-slate-950 font-black hover:scale-105 transition-all"
+                class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
               >
                 Siguiente →
               </button>
             {:else}
               <button
                 on:click={closeNotebookDemo}
-                class="flex-1 py-4 px-6 rounded-xl bg-emerald-400 text-slate-950 font-black hover:scale-105 transition-all"
+                class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-emerald-400 text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
               >
                 Finalizar ✓
               </button>
@@ -747,18 +780,18 @@
           </div>
         </div>
 
-        <!-- Right Side: Visual Mockup -->
+        <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative flex-1 bg-black flex items-center justify-center p-0 md:p-12 overflow-hidden"
+          class="relative flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden md:flex"
         >
           <button
             on:click={closeNotebookDemo}
-            class="absolute top-8 right-8 hidden md:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white font-bold transition-all z-10 border border-white/10"
+            class="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-slate-900/80 backdrop-blur hover:bg-slate-800 rounded-full text-white font-bold transition-all z-10 border border-white/10"
           >
             ✕ Cerrar tutorial
           </button>
 
-          <div class="w-full h-full relative p-4 md:p-12">
+          <div class="w-full h-full relative p-12">
             <div
               class="relative w-full h-full bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-white/5"
             >

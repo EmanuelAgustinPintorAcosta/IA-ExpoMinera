@@ -136,15 +136,15 @@
 {:else if currentPage === "dashboard"}
   <Header title="IA Educativa" subtitle="Bienvenido/a, {$currentUser.name}">
     <svelte:fragment slot="right">
-      <div class="flex items-center gap-4">
-        <div class="text-right">
+      <div class="flex items-center gap-2 md:gap-4">
+        <div class="text-right hidden sm:block">
           <p class="font-semibold text-gray-900">{$currentUser.name}</p>
           <p class="text-sm text-gray-700">
             {$currentUser.role === "teacher" ? "Docente" : "Estudiante"}
           </p>
         </div>
         <div
-          class="w-10 h-10 rounded-full bg-[#c41e3a] flex items-center justify-center text-white font-bold"
+          class="w-10 h-10 rounded-full bg-[#c41e3a] flex items-center justify-center text-white font-bold shrink-0"
         >
           {$currentUser.name[0]}
         </div>
@@ -153,13 +153,19 @@
   </Header>
 
   <main
-    class="w-full max-w-[1920px] 2xl:max-w-[95%] mx-auto px-4 md:px-8 py-12 2xl:py-16"
+    class="w-full max-w-[1920px] 2xl:max-w-[95%] mx-auto px-4 md:px-8 py-6 md:py-12 2xl:py-16"
   >
-    <div class="glass rounded-xl p-8 2xl:p-14 mb-12 gradient-dark text-white">
-      <h2 class="text-3xl 2xl:text-5xl font-bold mb-2 2xl:mb-6 text-white">
+    <div
+      class="glass rounded-xl p-6 md:p-8 2xl:p-14 mb-8 md:mb-12 gradient-dark text-white"
+    >
+      <h2
+        class="text-2xl md:text-3xl 2xl:text-5xl font-bold mb-2 2xl:mb-6 text-white"
+      >
         Hola, {$currentUser.name}! 👋
       </h2>
-      <p class="text-lg 2xl:text-2xl text-white mb-6 2xl:mb-10 max-w-5xl">
+      <p
+        class="text-base md:text-lg 2xl:text-2xl text-white mb-6 2xl:mb-10 max-w-5xl"
+      >
         {$currentUser.role === "teacher"
           ? "Descubre herramientas de IA para mejorar tu enseñanza y crear material educativo innovador."
           : "Aprende a usar herramientas de IA para potenciar tu aprendizaje y creatividad."}
@@ -352,19 +358,19 @@
             </div>
           </div>
 
-          <div class="flex gap-4">
+          <div class="flex flex-col md:flex-row gap-3 md:gap-4">
             <a
               href={selectedTool.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex-1 py-4 bg-[#c41e3a] text-white rounded-lg font-bold
+              class="flex-1 py-3 md:py-4 bg-[#c41e3a] text-white rounded-lg font-bold
                      hover:shadow-lg transition-all text-center hover:bg-[#a0182f]"
             >
               Visitar Sitio Oficial →
             </a>
             <button
               on:click={openTutorial}
-              class="flex-1 py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
+              class="flex-1 py-3 md:py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
                      hover:bg-[#c41e3a] hover:text-white transition-all"
             >
               Ver Tutorial →
@@ -378,26 +384,28 @@
 
 {#if isTutorialOpen}
   <div
-    class="fixed inset-0 z-[200] bg-black/90 p-4 md:p-8 flex items-center justify-center backdrop-blur-sm"
+    class="fixed inset-0 z-[200] bg-black/90 p-0 md:p-8 flex items-center justify-center backdrop-blur-sm"
     transition:fade={{ duration: 250 }}
   >
     <div
-      class="w-full h-full bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl rounded-3xl border border-white/10"
+      class="w-full h-full max-h-screen bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
       transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
     >
       <!-- Left Sidebar: Instructions -->
       <div
-        class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-r border-white/10 flex flex-col"
+        class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10 flex flex-col flex-1 md:flex-none"
       >
-        <div class="p-8 border-b border-white/10 flex-none">
-          <div class="flex items-center justify-between mb-8">
+        <div class="p-4 md:p-8 border-b border-white/10 flex-none">
+          <div class="flex items-center justify-between mb-4 md:mb-8">
             <div>
               <p
                 class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
               >
-                NotebookLM · Tutorial Guiado
+                NotebookLM · Guiado
               </p>
-              <h3 class="text-2xl font-bold text-white">ExpoMinera 2026</h3>
+              <h3 class="text-xl md:text-2xl font-bold text-white">
+                ExpoMinera 2026
+              </h3>
             </div>
             <button
               on:click={closeTutorial}
@@ -422,7 +430,7 @@
 
           <div class="space-y-2">
             <div class="flex justify-between text-sm font-bold">
-              <span class="text-white/60">Progreso del paso</span>
+              <span class="text-white/60">Progreso</span>
               <span class="text-[#c41e3a]">{Math.round(tutorialProgress)}%</span
               >
             </div>
@@ -435,7 +443,9 @@
           </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+        <div
+          class="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-4 md:space-y-8"
+        >
           <div
             class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
           >
@@ -443,33 +453,37 @@
               >PASO {tutorialStep + 1} DE {notebookTutorialSteps.length}</span
             >
           </div>
-          <div class="space-y-6">
-            <h4 class="text-4xl font-black text-white leading-tight">
+          <div class="space-y-4 md:space-y-6">
+            <h4
+              class="text-2xl md:text-4xl font-black text-white leading-tight"
+            >
               {notebookTutorialSteps[tutorialStep].title}
             </h4>
 
-            <p class="text-xl leading-relaxed text-white/80">
+            <p class="text-base md:text-xl leading-relaxed text-white/80">
               {notebookTutorialSteps[tutorialStep].description}
             </p>
           </div>
 
-          <div class="bg-cyan-400/10 border border-cyan-400/30 p-6 rounded-2xl">
+          <div
+            class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl"
+          >
             <p
-              class="text-base font-medium leading-relaxed text-cyan-100 flex gap-3"
+              class="text-sm md:text-base font-medium leading-relaxed text-cyan-100 flex gap-2 md:gap-3"
             >
-              <span class="text-2xl">💡</span>
+              <span class="text-xl md:text-2xl shrink-0">💡</span>
               {notebookTutorialSteps[tutorialStep].tip}
             </p>
           </div>
         </div>
 
         <div
-          class="p-8 bg-slate-950/50 border-t border-white/10 flex-none flex gap-4"
+          class="p-4 md:p-8 bg-slate-950/50 border-t border-white/10 flex-none flex gap-2 md:gap-4"
         >
           <button
             on:click={prevStep}
             disabled={tutorialStep === 0}
-            class="flex-1 py-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 disabled:opacity-20 disabled:cursor-not-allowed transition-all"
+            class="flex-1 py-3 md:py-4 rounded-xl border border-white/20 text-white font-bold text-sm md:text-base hover:bg-white/5 disabled:opacity-20 disabled:cursor-not-allowed transition-all"
           >
             Anterior
           </button>
@@ -477,16 +491,16 @@
           {#if tutorialStep < notebookTutorialSteps.length - 1}
             <button
               on:click={nextStep}
-              class="flex-2 py-4 px-8 rounded-xl bg-white text-slate-950 font-black hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/5"
+              class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-8 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/5"
             >
               Siguiente →
             </button>
           {:else}
             <button
               on:click={closeTutorial}
-              class="flex-2 py-4 px-8 rounded-xl bg-emerald-500 text-slate-950 font-black hover:scale-[1.02] active:scale-95 transition-all"
+              class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-8 rounded-xl bg-emerald-500 text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
             >
-              Finalizar Tutorial
+              Finalizar
             </button>
           {/if}
         </div>
