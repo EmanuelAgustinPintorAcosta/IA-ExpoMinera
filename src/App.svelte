@@ -661,12 +661,12 @@
       transition:fade={{ duration: 250 }}
     >
       <div
-        class="w-full h-full max-h-screen bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
+        class="w-full h-full max-h-screen bg-slate-950 flex flex-col lg:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
         transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col flex-1 md:flex-none h-full w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
+          class="flex flex-col flex-1 lg:flex-none h-full w-full lg:w-[400px] xl:w-[450px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
         >
           <!-- Header & Progress -->
           <div class="p-4 md:p-8 border-b border-white/10 flex-none">
@@ -683,7 +683,7 @@
               </div>
               <button
                 on:click={closeNotebookDemo}
-                class="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                class="lg:hidden p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
                 aria-label="Cerrar tutorial"
               >
                 ✕
@@ -736,15 +736,15 @@
               </p>
             </div>
 
-            <!-- Imagen inline para móviles (debajo del tip) -->
+            <!-- Imagen inline para móviles y tablets (debajo del tip) -->
             {#if notebookTutorialSteps[notebookStep].image}
               <div
-                class="block md:hidden w-full mt-4 rounded-xl overflow-hidden border border-white/10 bg-slate-800 shadow-inner"
+                class="block lg:hidden w-full mt-4 rounded-xl overflow-hidden border border-white/10 bg-slate-800 shadow-inner"
               >
                 <img
                   src={notebookTutorialSteps[notebookStep].image}
                   alt="Pantalla del paso {notebookStep + 1}"
-                  class="w-full h-auto max-h-[300px] object-contain select-none"
+                  class="w-full h-auto max-h-[350px] md:max-h-[500px] object-contain select-none"
                 />
               </div>
             {/if}
@@ -782,7 +782,7 @@
 
         <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden md:flex"
+          class="relative flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden lg:flex"
         >
           <button
             on:click={closeNotebookDemo}
