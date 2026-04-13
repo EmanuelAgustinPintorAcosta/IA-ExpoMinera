@@ -20,7 +20,7 @@
       description:
         "Transforma documentos en resúmenes, audios y guías de estudio con IA.",
       tags: ["resúmenes", "podcast", "documentos"],
-      level: "Inicial",
+      difficulty: 1,
       url: "https://notebooklm.google.com",
       hasDemo: true,
     },
@@ -32,7 +32,7 @@
       description:
         "Crea secuencias didácticas, consignas, rúbricas y actividades en minutos.",
       tags: ["clases", "ideas", "rúbricas"],
-      level: "Inicial",
+      difficulty: 1,
       url: "https://chatgpt.com",
       hasDemo: false,
     },
@@ -44,7 +44,7 @@
       description:
         "Diseña láminas, presentaciones y recursos visuales listos para el aula.",
       tags: ["diseño", "presentaciones", "infografías"],
-      level: "Inicial",
+      difficulty: 1,
       url: "https://www.canva.com",
       hasDemo: false,
     },
@@ -56,7 +56,7 @@
       description:
         "Investiga temas con fuentes citadas para construir clases con evidencia.",
       tags: ["fuentes", "investigación", "citas"],
-      level: "Intermedio",
+      difficulty: 2,
       url: "https://www.perplexity.ai",
       hasDemo: false,
     },
@@ -68,7 +68,7 @@
       description:
         "Genera evaluaciones gamificadas y seguimiento del progreso del grupo.",
       tags: ["quizzes", "reportes", "gamificación"],
-      level: "Inicial",
+      difficulty: 1,
       url: "https://quizizz.com",
       hasDemo: false,
     },
@@ -80,7 +80,7 @@
       description:
         "Asistente para planificar clases, adaptar consignas y ahorrar tiempo docente.",
       tags: ["planificación", "adaptaciones", "plantillas"],
-      level: "Intermedio",
+      difficulty: 2,
       url: "https://www.magicschool.ai",
       hasDemo: false,
     },
@@ -376,7 +376,7 @@
             ExpoMinera 2026 · San Juan
           </p>
           <p class="text-sm md:text-base font-semibold tracking-wide truncate">
-            IA Educativa
+            IA en la Mochila
           </p>
         </div>
       </div>
@@ -626,9 +626,17 @@
             </div>
 
             <div class="mt-6 flex items-center justify-between gap-2">
-              <span class="text-xs uppercase tracking-[0.18em] text-emerald-300"
-                >Nivel {tool.level}</span
+              <span
+                class="flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-amber-300"
+                aria-label={`Dificultad ${tool.difficulty} de 3`}
               >
+                Dificultad
+                <span class="ml-1 text-base tracking-normal">
+                  {#each Array(3) as _, i}
+                    <span>{i < tool.difficulty ? "★" : "☆"}</span>
+                  {/each}
+                </span>
+              </span>
               <a
                 href={tool.url}
                 target="_blank"
@@ -817,6 +825,14 @@
       </div>
     </div>
   {/if}
+  <!-- Footer -->
+  <footer class="mt-12 border-t border-white/10 bg-slate-900/60 text-white/90">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 ExpoMinera · IA en la Mochila</div>
+      <div class="text-sm text-white/70">SIED - Universidad Nacional de San Juan</div>
+    </div>
+  </footer>
+
 </div>
 
 <style>

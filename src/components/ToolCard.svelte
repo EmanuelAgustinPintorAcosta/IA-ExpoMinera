@@ -4,11 +4,11 @@
   export let tool: AITool;
   export let onClick: (() => void) | null = null;
 
-  const difficultyColors = {
-    beginner: 'bg-green-100 text-green-800',
-    intermediate: 'bg-yellow-100 text-yellow-800',
-    advanced: 'bg-red-100 text-red-800',
-  };
+  const difficultyValue = {
+    beginner: 1,
+    intermediate: 2,
+    advanced: 3,
+  } as const;
 
   const categoryIcons: Record<string, string> = {
     content: '📚',
@@ -30,8 +30,16 @@
   <div class="flex items-start justify-between mb-3">
     <div class="text-4xl">{tool.icon}</div>
     <div class="flex gap-2">
-      <span class="inline-block text-xs px-2 py-1 rounded-full {difficultyColors[tool.difficulty]}">
-        {tool.difficulty}
+      <span
+        class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-amber-100 text-amber-800"
+        aria-label={`Dificultad ${difficultyValue[tool.difficulty]} de 3`}
+      >
+        Dificultad
+        <span>
+          {#each Array(3) as _, i}
+            <span>{i < difficultyValue[tool.difficulty] ? '★' : '☆'}</span>
+          {/each}
+        </span>
       </span>
       {#if tool.isFree}
         <span class="inline-block text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800"> Gratis </span>

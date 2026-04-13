@@ -61,11 +61,11 @@
       title: "Crear el espacio de trabajo",
       description:
         'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
-      tip: "Tip: Usá un bloc de notas distinto para cada unidad o proyecto para no mezclar temas.",
+      tip: "Tip: Usá un cuaderno distinto para cada unidad o proyecto para no mezclar temas.",
       image: "/paso1.png",
     },
     {
-      title: 'Cargar la "materia prima"',
+      title: 'Cargar las fuentes',
       description:
         'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
       tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
@@ -191,7 +191,7 @@
     <div class="mb-12">
       <div class="flex items-center gap-2 mb-6">
         <span class="text-2xl">🚀</span>
-        <h2 class="text-2xl font-bold text-gray-900">Paso a paso</h2>
+        <h2 class="text-2xl font-bold text-white">Paso a paso</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {#each tutorials as item}
@@ -211,7 +211,7 @@
     <div class="mb-10">
       <div class="flex items-center gap-2 mb-6">
         <span class="text-2xl">🛠️</span>
-        <h2 class="text-2xl font-bold text-gray-900">Herramientas</h2>
+        <h2 class="text-2xl font-bold text-white">Herramientas</h2>
       </div>
       <div class="mb-6">
         <input

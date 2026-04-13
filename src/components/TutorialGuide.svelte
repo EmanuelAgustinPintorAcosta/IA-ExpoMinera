@@ -16,8 +16,8 @@
   <!-- Progress Bar -->
   <div class="mb-8">
     <div class="flex justify-between items-center mb-2">
-      <h2 class="text-lg font-bold text-gray-900">Paso {currentStep + 1} de {totalSteps}</h2>
-      <span class="text-sm text-gray-600">{Math.round(((currentStep + 1) / totalSteps) * 100)}%</span>
+      <h2 class="text-lg font-bold text-white">Paso {currentStep + 1} de {totalSteps}</h2>
+      <span class="text-sm text-white/70">{Math.round(((currentStep + 1) / totalSteps) * 100)}%</span>
     </div>
     <div class="w-full bg-gray-200 rounded-full h-2">
       <div
@@ -29,8 +29,8 @@
 
   <!-- Step Content -->
   <div class="glass p-8 rounded-xl mb-8">
-    <h3 class="text-2xl font-bold text-gray-900 mb-2">{stepTitle}</h3>
-    <p class="text-gray-600 mb-6">{stepDescription}</p>
+  <h3 class="text-2xl font-bold text-white mb-2">{stepTitle}</h3>
+  <p class="text-white/70 mb-6">{stepDescription}</p>
     <div class="bg-gray-50 p-6 rounded-lg mb-6 border-l-4 border-red-600">
       <p class="text-gray-700 whitespace-pre-wrap">{stepContent}</p>
     </div>
