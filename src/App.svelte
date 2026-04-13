@@ -116,7 +116,7 @@
       image: "/paso1.png",
     },
     {
-      title: 'Cargar la "materia prima"',
+      title: 'Cargar las fuentes',
       description:
         'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
       tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
