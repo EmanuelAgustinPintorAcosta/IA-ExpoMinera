@@ -670,11 +670,12 @@
     >
       <div
         class="w-full h-full max-h-screen bg-slate-950 flex flex-col lg:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
+        style="height: 100%; max-height: 100dvh;"
         transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col flex-1 lg:flex-none h-full w-full lg:w-[400px] xl:w-[450px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
+          class="flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-[400px] xl:w-[450px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
         >
           <!-- Header & Progress -->
           <div class="p-4 md:p-8 border-b border-white/10 flex-none">
@@ -719,7 +720,7 @@
           </div>
 
           <div
-            class="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-6 md:space-y-8"
+            class="flex-1 min-h-0 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-6 md:space-y-8"
           >
             <div class="space-y-4 md:space-y-6">
               <h4
@@ -790,7 +791,7 @@
 
         <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden lg:flex"
+          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden lg:flex"
         >
           <button
             on:click={closeNotebookDemo}
