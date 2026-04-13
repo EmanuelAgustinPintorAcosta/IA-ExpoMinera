@@ -111,14 +111,14 @@
     {
       title: "Crear el espacio de trabajo",
       description:
-        'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
+        'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. ',
       tip: "Tip: Usá un bloc de notas distinto para cada unidad o proyecto para no mezclar temas.",
       image: "/paso1.png",
     },
     {
       title: 'Cargar las fuentes',
       description:
-        'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
+        'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
       tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
       image: "/paso2.png",
     },
@@ -828,7 +828,7 @@
   <!-- Footer -->
   <footer class="mt-12 border-t border-white/10 bg-slate-900/60 text-white/90">
     <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-sm">© 2026 ExpoMinera · IA en la Mochila</div>
+      <div class="text-sm">© 2026 ExpoMinera · IA en la Mochila - Desarrollado por Brizuela Mara, Mancini Marcela y Pintor Emanuel</div>
       <div class="text-sm text-white/70">SIED - Universidad Nacional de San Juan</div>
     </div>
   </footer>
