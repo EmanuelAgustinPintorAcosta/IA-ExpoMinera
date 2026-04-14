@@ -88,10 +88,22 @@
   </div>
 
   <!-- Button -->
-  <button
-    class="mt-4 w-full py-2 bg-gradient-primary text-white rounded-lg font-semibold
-           hover:shadow-lg transform hover:scale-105 transition-all"
-  >
     Explorar
+  </button>
+
+  <!-- Tutorial Button -->
+  <button
+    on:click|stopPropagation={() => {
+      if (tool.name === 'NotebookLM') {
+        // En Dashboard.svelte, la navegación al tutorial se maneja abriendo el detalle primero.
+        // O podríamos emitir un evento. Pero el usuario pidió "agregale ese botón".
+        onClick && onClick(); 
+      }
+    }}
+    class="mt-2 w-full py-2 border rounded-lg font-semibold transition-all {tool.name === 'NotebookLM'
+      ? 'border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
+      : 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-60'}"
+  >
+    {tool.name === 'NotebookLM' ? 'Ver Tutorial interactivo' : 'Tutorial interactivo (próximamente)'}
   </button>
 </div>

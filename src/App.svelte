@@ -647,14 +647,16 @@
               </a>
             </div>
 
-            {#if tool.hasDemo}
-              <button
-                on:click={openNotebookDemo}
-                class="mt-3 w-full rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 hover:bg-cyan-400/20"
-              >
-                Ver mock interactivo de tutorial
-              </button>
-            {/if}
+            <button
+              on:click={tool.hasDemo ? openNotebookDemo : null}
+              class="mt-3 w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all {tool.hasDemo
+                ? 'border-cyan-300/40 bg-cyan-400/10 text-cyan-200 hover:bg-cyan-400/20'
+                : 'border-white/10 bg-white/5 text-white/30 cursor-not-allowed opacity-50'}"
+            >
+              {tool.hasDemo
+                ? "Ver Tutorial interactivo"
+                : "Tutorial interactivo (próximamente)"}
+            </button>
           </article>
         {/each}
       </div>
@@ -678,8 +680,8 @@
           class="flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-[400px] xl:w-[450px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
         >
           <!-- Header & Progress -->
-          <div class="p-4 md:p-8 border-b border-white/10 flex-none">
-            <div class="mb-4 md:mb-8 flex items-center justify-between">
+          <div class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none">
+            <div class="mb-3 md:mb-5 flex items-center justify-between">
               <div>
                 <p
                   class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
@@ -720,25 +722,25 @@
           </div>
 
           <div
-            class="flex-1 min-h-0 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-6 md:space-y-8"
+            class="flex-1 min-h-0 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-5"
           >
-            <div class="space-y-4 md:space-y-6">
+            <div class="space-y-3 md:space-y-4">
               <h4
-                class="text-2xl md:text-4xl font-black text-white leading-tight"
+                class="text-xl md:text-2xl font-black text-white leading-tight"
               >
                 {notebookTutorialSteps[notebookStep].title}
               </h4>
 
-              <p class="text-base md:text-xl leading-relaxed text-white/80">
+              <p class="text-base md:text-lg leading-snug text-white/80">
                 {notebookTutorialSteps[notebookStep].description}
               </p>
             </div>
 
             <div
-              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl"
+              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl"
             >
               <p
-                class="text-sm md:text-base font-medium leading-relaxed text-cyan-100 flex gap-2 md:gap-3"
+                class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
               >
                 <span class="text-xl md:text-2xl shrink-0">💡</span>
                 {notebookTutorialSteps[notebookStep].tip}
@@ -761,7 +763,7 @@
 
           <!-- Navigation Buttons -->
           <div
-            class="p-4 md:p-8 border-t border-white/10 flex-none flex items-center justify-between gap-2 md:gap-4"
+            class="p-4 md:p-6 border-t border-white/10 flex-none flex items-center justify-between gap-2 md:gap-4"
           >
             <button
               on:click={prevNotebookStep}
@@ -791,16 +793,17 @@
 
         <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 md:p-12 overflow-hidden hidden lg:flex"
+          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 overflow-hidden hidden lg:flex"
         >
           <button
             on:click={closeNotebookDemo}
-            class="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-slate-900/80 backdrop-blur hover:bg-slate-800 rounded-full text-white font-bold transition-all z-10 border border-white/10"
+            class="absolute top-6 right-6 flex items-center justify-center w-10 h-10 bg-slate-900/80 backdrop-blur hover:bg-slate-800 rounded-full text-white font-bold transition-all z-20 border border-white/10"
+            aria-label="Cerrar tutorial"
           >
-            ✕ Cerrar tutorial
+            ✕
           </button>
 
-          <div class="w-full h-full relative p-12">
+          <div class="w-full h-full relative p-2 md:p-4">
             <div
               class="relative w-full h-full bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-white/5"
             >
@@ -984,5 +987,13 @@
       transition: none !important;
       transform: none !important;
     }
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 </style>

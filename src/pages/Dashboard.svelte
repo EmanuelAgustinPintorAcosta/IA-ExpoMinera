@@ -373,7 +373,7 @@
               class="flex-1 py-3 md:py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
                      hover:bg-[#c41e3a] hover:text-white transition-all"
             >
-              Ver Tutorial →
+              Ver Tutorial interactivo
             </button>
           </div>
         </div>
@@ -395,8 +395,8 @@
       <div
         class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10 flex flex-col flex-1 md:flex-none"
       >
-        <div class="p-4 md:p-8 border-b border-white/10 flex-none">
-          <div class="flex items-center justify-between mb-4 md:mb-8">
+        <div class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none">
+          <div class="flex items-center justify-between mb-3 md:mb-5">
             <div>
               <p
                 class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
@@ -409,7 +409,7 @@
             </div>
             <button
               on:click={closeTutorial}
-              aria-label="Cerrar tutorial"
+              aria-label=""
               class="p-2 hover:bg-white/10 rounded-lg transition-colors text-white/70 hover:text-white"
             >
               <svg
@@ -444,7 +444,7 @@
         </div>
 
         <div
-          class="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-4 md:space-y-8"
+          class="flex-1 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-6"
         >
           <div
             class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
@@ -453,14 +453,14 @@
               >PASO {tutorialStep + 1} DE {notebookTutorialSteps.length}</span
             >
           </div>
-          <div class="space-y-4 md:space-y-6">
+          <div class="space-y-3 md:space-y-4">
             <h4
-              class="text-2xl md:text-4xl font-black text-white leading-tight"
+              class="text-xl md:text-2xl font-black text-white leading-tight"
             >
               {notebookTutorialSteps[tutorialStep].title}
             </h4>
 
-            <p class="text-base md:text-xl leading-relaxed text-white/80">
+            <p class="text-base md:text-lg leading-snug text-white/80">
               {notebookTutorialSteps[tutorialStep].description}
             </p>
           </div>
@@ -469,7 +469,7 @@
             class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl"
           >
             <p
-              class="text-sm md:text-base font-medium leading-relaxed text-cyan-100 flex gap-2 md:gap-3"
+              class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
             >
               <span class="text-xl md:text-2xl shrink-0">💡</span>
               {notebookTutorialSteps[tutorialStep].tip}
@@ -478,7 +478,7 @@
         </div>
 
         <div
-          class="p-4 md:p-8 bg-slate-950/50 border-t border-white/10 flex-none flex gap-2 md:gap-4"
+          class="p-4 md:p-6 bg-slate-950/50 border-t border-white/10 flex-none flex gap-2 md:gap-4"
         >
           <button
             on:click={prevStep}
@@ -519,25 +519,13 @@
         <!-- Close button for desktop -->
         <button
           on:click={closeTutorial}
-          class="absolute top-8 right-8 z-50 hidden md:flex items-center gap-3 px-5 py-2.5 bg-slate-900/80 hover:bg-slate-800 border border-white/10 rounded-full text-white font-bold transition-all backdrop-blur-md"
+          class="absolute top-6 right-6 z-50 hidden md:flex items-center justify-center w-10 h-10 bg-slate-900/80 hover:bg-slate-800 border border-white/10 rounded-full text-white font-bold transition-all backdrop-blur-md"
+          aria-label="Cerrar tutorial"
         >
-          <span class="text-sm">Salir del tutorial</span>
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          ✕
         </button>
 
-        <div class="w-full h-full relative p-4 md:p-12">
+        <div class="w-full h-full relative p-2 md:p-4">
           <div
             class="relative w-full h-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-white/5"
           >
@@ -564,16 +552,10 @@
 
 <style>
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    display: none;
   }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 </style>
