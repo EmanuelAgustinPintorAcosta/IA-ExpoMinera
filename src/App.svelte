@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fade, scale } from "svelte/transition";
+  import Footer from "./components/Footer.svelte";
   let isBrightMode = false;
   let isNotebookModalOpen = false;
   let notebookStep = 0;
@@ -16,7 +17,7 @@
       name: "NotebookLM",
       badge: "Destacada",
       category: "contenido",
-      icon: "📓",
+      icon: "/notebooklm.png",
       description:
         "Transforma documentos en resúmenes, audios y guías de estudio con IA.",
       tags: ["resúmenes", "podcast", "documentos"],
@@ -28,7 +29,7 @@
       name: "ChatGPT",
       badge: "Popular",
       category: "planificacion",
-      icon: "💬",
+      icon: "/gpt.png",
       description:
         "Crea secuencias didácticas, consignas, rúbricas y actividades en minutos.",
       tags: ["clases", "ideas", "rúbricas"],
@@ -40,7 +41,7 @@
       name: "Canva IA",
       badge: "Visual",
       category: "creatividad",
-      icon: "🎨",
+      icon: "/Canva.png",
       description:
         "Diseña láminas, presentaciones y recursos visuales listos para el aula.",
       tags: ["diseño", "presentaciones", "infografías"],
@@ -52,7 +53,7 @@
       name: "Perplexity",
       badge: "Investigación",
       category: "contenido",
-      icon: "🔎",
+      icon: "/perplexity.png",
       description:
         "Investiga temas con fuentes citadas para construir clases con evidencia.",
       tags: ["fuentes", "investigación", "citas"],
@@ -61,22 +62,21 @@
       hasDemo: false,
     },
     {
-      name: "Quizizz",
+      name: "Wayground",
       badge: "Evaluación",
       category: "evaluacion",
-      icon: "🧠",
-      description:
-        "Genera evaluaciones gamificadas y seguimiento del progreso del grupo.",
+      icon: "/wayground.png",
+      description:    "Genera evaluaciones gamificadas y seguimiento del progreso del grupo.",
       tags: ["quizzes", "reportes", "gamificación"],
       difficulty: 1,
-      url: "https://quizizz.com",
+      url: "https://wayground.com",
       hasDemo: false,
     },
     {
       name: "MagicSchool",
       badge: "Docencia",
       category: "planificacion",
-      icon: "🪄",
+      icon: "/magicschool.jpeg",
       description:
         "Asistente para planificar clases, adaptar consignas y ahorrar tiempo docente.",
       tags: ["planificación", "adaptaciones", "plantillas"],
@@ -369,9 +369,9 @@
       <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
         <span
           class="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
-          >✨</span
+          ><img src="/LOGO-IAenlamochila.png" alt="logo" class="h-full w-full object-contain" /></span
         >
-        <div class="flex-shrink min-w-0 pr-2">
+        <div class="shrink min-w-0 pr-2">
           <p class="text-xs md:text-sm text-white/70 truncate">
             ExpoMinera 2026 · San Juan
           </p>
@@ -381,7 +381,7 @@
         </div>
       </div>
 
-      <div class="hidden items-center gap-6 lg:flex flex-shrink-0">
+      <div class="hidden items-center gap-6 lg:flex shrink-0">
         <button
           on:click={() => scrollToSection("impacto")}
           class="text-sm text-white/80 hover:text-white">Impacto</button
@@ -396,7 +396,7 @@
         >
       </div>
 
-      <div class="flex items-center gap-2 md:gap-3 flex-shrink-0">
+      <div class="flex items-center gap-2 md:gap-3 shrink-0">
         <button
           on:click={() => scrollToSection("herramientas")}
           class="rounded-full bg-white px-3 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:scale-105 whitespace-nowrap transition-all"
@@ -606,7 +606,17 @@
             data-reveal-delay={`${idx * 80}ms`}
           >
             <div class="flex items-start justify-between">
-              <span class="text-4xl">{tool.icon}</span>
+              
+              {#if tool.icon.startsWith('/')}
+                <img 
+                  src={tool.icon} 
+                  alt={`Logo de ${tool.name}`} 
+                  class="h-10 w-10 object-contain rounded-md bg-white/10 p-1" 
+                />
+              {:else}
+                <span class="text-4xl">{tool.icon}</span>
+              {/if}
+
               <span
                 class="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/80"
                 >{tool.badge}</span
@@ -665,7 +675,7 @@
 
   {#if isNotebookModalOpen}
     <div
-      class="fixed inset-0 z-[100] bg-black/90 p-0 md:p-10 flex items-center justify-center backdrop-blur-md"
+      class="fixed inset-0 z-100 bg-black/90 p-0 md:p-10 flex items-center justify-center backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       transition:fade={{ duration: 250 }}
@@ -677,7 +687,7 @@
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-[400px] xl:w-[450px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
+          class="flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-400px xl:w-450px bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
         >
           <!-- Header & Progress -->
           <div class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none">
@@ -755,7 +765,7 @@
                 <img
                   src={notebookTutorialSteps[notebookStep].image}
                   alt="Pantalla del paso {notebookStep + 1}"
-                  class="w-full h-auto max-h-[350px] md:max-h-[500px] object-contain select-none"
+                  class="w-full h-auto max-h-350px md:max-h-500px object-contain select-none"
                 />
               </div>
             {/if}
@@ -829,14 +839,7 @@
       </div>
     </div>
   {/if}
-  <!-- Footer -->
-  <footer class="mt-12 border-t border-white/10 bg-slate-900/60 text-white/90">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-sm">© 2026 ExpoMinera · IA en la Mochila - Desarrollado por Brizuela Mara, Mancini Marcela y Pintor Emanuel</div>
-      <div class="text-sm text-white/70">SIED - Universidad Nacional de San Juan</div>
-    </div>
-  </footer>
-
+    <Footer />
 </div>
 
 <style>
