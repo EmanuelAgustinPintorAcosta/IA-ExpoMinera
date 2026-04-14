@@ -66,7 +66,8 @@
       badge: "Evaluación",
       category: "evaluacion",
       icon: "/wayground.png",
-      description:    "Genera evaluaciones gamificadas y seguimiento del progreso del grupo.",
+      description:
+        "Genera evaluaciones gamificadas y seguimiento del progreso del grupo.",
       tags: ["quizzes", "reportes", "gamificación"],
       difficulty: 1,
       url: "https://wayground.com",
@@ -116,7 +117,7 @@
       image: "/paso1.png",
     },
     {
-      title: 'Cargar las fuentes',
+      title: "Cargar las fuentes",
       description:
         'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
       tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
@@ -369,7 +370,11 @@
       <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
         <span
           class="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
-          ><img src="/LOGO-IAenlamochila.png" alt="logo" class="h-full w-full object-contain" /></span
+          ><img
+            src="/LOGO-IAenlamochila.png"
+            alt="logo"
+            class="h-full w-full object-contain"
+          /></span
         >
         <div class="shrink min-w-0 pr-2">
           <p class="text-xs md:text-sm text-white/70 truncate">
@@ -606,12 +611,11 @@
             data-reveal-delay={`${idx * 80}ms`}
           >
             <div class="flex items-start justify-between">
-              
-              {#if tool.icon.startsWith('/')}
-                <img 
-                  src={tool.icon} 
-                  alt={`Logo de ${tool.name}`} 
-                  class="h-10 w-10 object-contain rounded-md bg-white/10 p-1" 
+              {#if tool.icon.startsWith("/")}
+                <img
+                  src={tool.icon}
+                  alt={`Logo de ${tool.name}`}
+                  class="h-10 w-10 object-contain rounded-md bg-white/10 p-1"
                 />
               {:else}
                 <span class="text-4xl">{tool.icon}</span>
@@ -681,16 +685,18 @@
       transition:fade={{ duration: 250 }}
     >
       <div
-        class="w-full h-full max-h-screen bg-slate-950 flex flex-col lg:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
+        class="w-full h-full max-h-screen bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
         style="height: 100%; max-height: 100dvh;"
         transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-400px xl:w-450px bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
+          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
         >
           <!-- Header & Progress -->
-          <div class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none">
+          <div
+            class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none"
+          >
             <div class="mb-3 md:mb-5 flex items-center justify-between">
               <div>
                 <p
@@ -803,7 +809,7 @@
 
         <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 overflow-hidden hidden lg:flex"
+          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 overflow-hidden hidden md:flex"
         >
           <button
             on:click={closeNotebookDemo}
@@ -839,7 +845,7 @@
       </div>
     </div>
   {/if}
-    <Footer />
+  <Footer />
 </div>
 
 <style>

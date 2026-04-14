@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { AITool } from '../lib/types';
+  import type { AITool } from "../lib/types";
 
   export let tool: AITool;
   export let onClick: (() => void) | null = null;
@@ -11,11 +11,11 @@
   } as const;
 
   const categoryIcons: Record<string, string> = {
-    content: '📚',
-    planning: '📋',
-    assessment: '📊',
-    personalization: '👤',
-    research: '🔍',
+    content: "📚",
+    planning: "📋",
+    assessment: "📊",
+    personalization: "👤",
+    research: "🔍",
   };
 </script>
 
@@ -37,18 +37,24 @@
         Dificultad
         <span>
           {#each Array(3) as _, i}
-            <span>{i < difficultyValue[tool.difficulty] ? '★' : '☆'}</span>
+            <span>{i < difficultyValue[tool.difficulty] ? "★" : "☆"}</span>
           {/each}
         </span>
       </span>
       {#if tool.isFree}
-        <span class="inline-block text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800"> Gratis </span>
+        <span
+          class="inline-block text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800"
+        >
+          Gratis
+        </span>
       {/if}
     </div>
   </div>
 
   <!-- Title -->
-  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+  <h3
+    class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors"
+  >
     {tool.name}
   </h3>
 
@@ -88,22 +94,28 @@
   </div>
 
   <!-- Button -->
+  <button
+    class="mt-4 w-full py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all"
+  >
     Explorar
   </button>
 
   <!-- Tutorial Button -->
   <button
     on:click|stopPropagation={() => {
-      if (tool.name === 'NotebookLM') {
+      if (tool.name === "NotebookLM") {
         // En Dashboard.svelte, la navegación al tutorial se maneja abriendo el detalle primero.
         // O podríamos emitir un evento. Pero el usuario pidió "agregale ese botón".
-        onClick && onClick(); 
+        onClick && onClick();
       }
     }}
-    class="mt-2 w-full py-2 border rounded-lg font-semibold transition-all {tool.name === 'NotebookLM'
+    class="mt-2 w-full py-2 border rounded-lg font-semibold transition-all {tool.name ===
+    'NotebookLM'
       ? 'border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
       : 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-60'}"
   >
-    {tool.name === 'NotebookLM' ? 'Ver Tutorial interactivo' : 'Tutorial interactivo (próximamente)'}
+    {tool.name === "NotebookLM"
+      ? "Ver Tutorial interactivo"
+      : "Tutorial interactivo (próximamente)"}
   </button>
 </div>

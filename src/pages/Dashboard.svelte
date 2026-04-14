@@ -65,7 +65,7 @@
       image: "/paso1.png",
     },
     {
-      title: 'Cargar las fuentes',
+      title: "Cargar las fuentes",
       description:
         'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
       tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
@@ -156,34 +156,43 @@
     class="w-full max-w-[1920px] 2xl:max-w-[95%] mx-auto px-4 md:px-8 py-6 md:py-12 2xl:py-16"
   >
     <div
-      class="glass rounded-xl p-6 md:p-8 2xl:p-14 mb-8 md:mb-12 gradient-dark text-white"
+      class="glass rounded-xl p-6 md:p-8 2xl:p-14 mb-8 md:mb-12 gradient-dark text-white flex flex-col md:flex-row items-center justify-between gap-8"
     >
-      <h2
-        class="text-2xl md:text-3xl 2xl:text-5xl font-bold mb-2 2xl:mb-6 text-white"
-      >
-        Hola, {$currentUser.name}! 👋
-      </h2>
-      <p
-        class="text-base md:text-lg 2xl:text-2xl text-white mb-6 2xl:mb-10 max-w-5xl"
-      >
-        {$currentUser.role === "teacher"
-          ? "Descubre herramientas de IA para mejorar tu enseñanza y crear material educativo innovador."
-          : "Aprende a usar herramientas de IA para potenciar tu aprendizaje y creatividad."}
-      </p>
+      <div class="flex-1">
+        <h2
+          class="text-2xl md:text-3xl 2xl:text-5xl font-bold mb-2 2xl:mb-6 text-white"
+        >
+          Hola, {$currentUser.name}! 👋
+        </h2>
+        <p
+          class="text-base md:text-lg 2xl:text-2xl text-white mb-6 2xl:mb-10 max-w-5xl"
+        >
+          {$currentUser.role === "teacher"
+            ? "Descubre herramientas de IA para mejorar tu enseñanza y crear material educativo innovador."
+            : "Aprende a usar herramientas de IA para potenciar tu aprendizaje y creatividad."}
+        </p>
 
-      <div class="grid md:grid-cols-3 gap-4 2xl:gap-8">
-        <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
-          <div class="text-3xl font-bold mb-1">6+</div>
-          <p class="text-sm text-white/90">Herramientas disponibles</p>
+        <div class="grid md:grid-cols-3 gap-4 2xl:gap-8">
+          <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
+            <div class="text-3xl font-bold mb-1">6+</div>
+            <p class="text-sm text-white/90">Herramientas disponibles</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
+            <div class="text-3xl font-bold mb-1">2+</div>
+            <p class="text-sm text-white/90">Tutoriales interactivos</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
+            <div class="text-3xl font-bold mb-1">∞</div>
+            <p class="text-sm text-white/90">Posibilidades de aprendizaje</p>
+          </div>
         </div>
-        <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
-          <div class="text-3xl font-bold mb-1">2+</div>
-          <p class="text-sm text-white/90">Tutoriales interactivos</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur p-4 rounded-lg">
-          <div class="text-3xl font-bold mb-1">∞</div>
-          <p class="text-sm text-white/90">Posibilidades de aprendizaje</p>
-        </div>
+      </div>
+      <div class="hidden md:block w-full md:w-1/3 xl:w-1/4">
+        <img
+          src="/src/assets/hero.png"
+          alt="Hero Illustration"
+          class="w-full h-auto object-contain opacity-90 drop-shadow-2xl brightness-110"
+        />
       </div>
     </div>
 
@@ -212,6 +221,7 @@
       <div class="flex items-center gap-2 mb-6">
         <span class="text-2xl">🛠️</span>
         <h2 class="text-2xl font-bold text-white">Herramientas</h2>
+        5
       </div>
       <div class="mb-6">
         <input
@@ -395,7 +405,9 @@
       <div
         class="w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10 flex flex-col flex-1 md:flex-none"
       >
-        <div class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none">
+        <div
+          class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none"
+        >
           <div class="flex items-center justify-between mb-3 md:mb-5">
             <div>
               <p
@@ -409,7 +421,7 @@
             </div>
             <button
               on:click={closeTutorial}
-              aria-label=""
+              aria-label="Cerrar tutorial"
               class="p-2 hover:bg-white/10 rounded-lg transition-colors text-white/70 hover:text-white"
             >
               <svg
@@ -454,9 +466,7 @@
             >
           </div>
           <div class="space-y-3 md:space-y-4">
-            <h4
-              class="text-xl md:text-2xl font-black text-white leading-tight"
-            >
+            <h4 class="text-xl md:text-2xl font-black text-white leading-tight">
               {notebookTutorialSteps[tutorialStep].title}
             </h4>
 
