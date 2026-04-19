@@ -740,20 +740,19 @@
           <div
             class="flex-1 min-h-0 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-5"
           >
-            <div class="space-y-3 md:space-y-4">
-              <h4
-                class="text-xl md:text-2xl font-black text-white leading-tight"
+            <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
+              <span class="text-cyan-400">Paso {notebookStep + 1}:</span>
+              <span class="text-white"
+                >{notebookTutorialSteps[notebookStep].title}</span
               >
-                {notebookTutorialSteps[notebookStep].title}
-              </h4>
+            </h4>
 
-              <p class="text-base md:text-lg leading-snug text-white/80">
-                {notebookTutorialSteps[notebookStep].description}
-              </p>
-            </div>
+            <p class="text-base md:text-lg leading-snug text-white/80">
+              {notebookTutorialSteps[notebookStep].description}
+            </p>
 
             <div
-              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl"
+              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl mt-6 md:mt-8"
             >
               <p
                 class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"

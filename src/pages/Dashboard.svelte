@@ -458,25 +458,19 @@
         <div
           class="flex-1 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-6"
         >
-          <div
-            class="mb-2 inline-block px-3 py-1 bg-[#c41e3a]/10 border border-[#c41e3a]/20 rounded-md"
-          >
-            <span class="text-xs font-bold text-[#c41e3a]"
-              >PASO {tutorialStep + 1} DE {notebookTutorialSteps.length}</span
+          <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
+            <span class="text-[#c41e3a]">Paso {tutorialStep + 1}:</span>
+            <span class="text-white"
+              >{notebookTutorialSteps[tutorialStep].title}</span
             >
-          </div>
-          <div class="space-y-3 md:space-y-4">
-            <h4 class="text-xl md:text-2xl font-black text-white leading-tight">
-              {notebookTutorialSteps[tutorialStep].title}
-            </h4>
+          </h4>
 
-            <p class="text-base md:text-lg leading-snug text-white/80">
-              {notebookTutorialSteps[tutorialStep].description}
-            </p>
-          </div>
+          <p class="text-base md:text-lg leading-snug text-white/80">
+            {notebookTutorialSteps[tutorialStep].description}
+          </p>
 
           <div
-            class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl"
+            class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl mt-6 md:mt-8"
           >
             <p
               class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
@@ -557,8 +551,7 @@
         </div>
       </div>
     </div>
-  </div>
-{/if}
+  {/if}
 
 <style>
   .custom-scrollbar::-webkit-scrollbar {
