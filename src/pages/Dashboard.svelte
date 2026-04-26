@@ -40,7 +40,7 @@
     {
       step: "01",
       title: "Elegí una herramienta",
-      text: "",
+      text: "Explorá por objetivo: explicar, crear material, evaluar o investigar.",
     },
     {
       step: "02",
