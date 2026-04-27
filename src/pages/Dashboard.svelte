@@ -10,7 +10,19 @@
   import Header from "../components/Header.svelte";
   import ToolCard from "../components/ToolCard.svelte";
   import { aiToolsData, toolCategories } from "../lib/data/aiTools";
+  import { tutorialCatalog } from "../lib/data/tutorialCatalog";
   import type { AITool } from "../lib/types";
+
+  // Mapeo: nombre de herramienta → key del catálogo de tutoriales
+  const toolToCatalogKey: Record<string, keyof typeof tutorialCatalog> = {
+    'NotebookLM': 'notebooklm',
+    'ChatGPT': 'chatgpt',
+    'Canva': 'canva',
+    'MidJourney': 'magic',
+    'Copilot de Microsoft': 'magic',
+    'Quizizz': 'wayground',
+    'Perplexity': 'perplexity',
+  };
 
   let filteredTools: AITool[] = [];
   let currentPage: "dashboard" | "tools" | "tutorial" = "dashboard";
@@ -56,43 +68,9 @@
 
   let isTutorialOpen = false;
   let tutorialStep = 0;
-  const notebookTutorialSteps = [
-    {
-      title: "Crear el espacio de trabajo",
-      description:
-        'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
-      tip: "Tip: Usá un cuaderno distinto para cada unidad o proyecto para no mezclar temas.",
-      image: "/paso1.png",
-    },
-    {
-      title: "Cargar las fuentes",
-      description:
-        'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
-      tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
-      image: "/paso2.png",
-    },
-    {
-      title: "Aprovechar el análisis automático",
-      description:
-        'Apenas termines de subir tus fuentes, NotebookLM genera automáticamente un "Resumen de las fuentes" y una guía de estudio inicial. Revisá este material base; es excelente para usar como introducción a la clase.',
-      tip: 'Tip: Hacé clic en "Guía de estudio" arriba a la derecha para ver preguntas frecuentes sugeridas.',
-      image: "/paso3.png",
-    },
-    {
-      title: "Dialogar con tus documentos",
-      description:
-        'En la barra inferior tenés el cuadro de chat. A diferencia de ChatGPT, acá la IA solo responde basándose en los textos que vos le subiste. Pedile cosas específicas: "Armá 5 preguntas de comprensión lectora sobre el capítulo 2".',
-      tip: "Tip: Si la IA te da un dato, te va a poner un numerito. Hacé clic ahí para ver en qué párrafo exacto de tu PDF sacó esa información.",
-      image: "/paso4.png",
-    },
-    {
-      title: "Guardar y armar la clase",
-      description:
-        "Cuando la IA te devuelva un material que te sirva (una rúbrica, una consigna, un resumen), hacé clic en el ícono del pin (la chinche) en la respuesta. Esto lo guarda como una nota fija en tu panel para que la copies y pegues en tu planificación.",
-      tip: 'Tip: Juntá varias notas guardadas y pedile a la IA: "Usá estas notas para armarme la secuencia didáctica de la clase de hoy".',
-      image: "/paso5.png",
-    },
-  ];
+  let currentTutorialSteps: {title: string; description: string; tip: string; image: string}[] = [];
+  let currentTutorialLabel = "";
+  let currentTutorialAccent = "";
 
   function selectTool(tool: AITool) {
     selectedTool = tool;
@@ -104,27 +82,43 @@
     selectedTool = null;
   }
 
+  // Verifica si la herramienta seleccionada tiene tutorial disponible
+  $: hasTutorial = selectedTool ? !!toolToCatalogKey[selectedTool.name] : false;
+
   function openTutorial() {
-    isTutorialOpen = true;
-    tutorialStep = 0;
-    document.body.style.overflow = "hidden";
+    if (selectedTool) {
+      const catalogKey = toolToCatalogKey[selectedTool.name];
+      if (catalogKey && tutorialCatalog[catalogKey]) {
+        const tutorial = tutorialCatalog[catalogKey];
+        currentTutorialSteps = [...tutorial.steps];
+        currentTutorialLabel = tutorial.label;
+        currentTutorialAccent = tutorial.accent;
+        isTutorialOpen = true;
+        tutorialStep = 0;
+        document.body.style.overflow = "hidden";
+      } else {
+        alert("Tutorial no disponible para esta herramienta.");
+      }
+    }
   }
 
   function closeTutorial() {
     isTutorialOpen = false;
+    currentTutorialSteps = [];
     document.body.style.overflow = "";
   }
 
   function nextStep() {
-    if (tutorialStep < notebookTutorialSteps.length - 1) tutorialStep++;
+    if (tutorialStep < currentTutorialSteps.length - 1) tutorialStep++;
   }
 
   function prevStep() {
     if (tutorialStep > 0) tutorialStep--;
   }
 
-  $: tutorialProgress =
-    ((tutorialStep + 1) / notebookTutorialSteps.length) * 100;
+  $: tutorialProgress = currentTutorialSteps.length > 0 
+    ? ((tutorialStep + 1) / currentTutorialSteps.length) * 100
+    : 0;
 </script>
 
 {#if !$currentUser}
@@ -378,13 +372,23 @@
             >
               Visitar Sitio Oficial →
             </a>
-            <button
-              on:click={openTutorial}
-              class="flex-1 py-3 md:py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
-                     hover:bg-[#c41e3a] hover:text-white transition-all"
-            >
-              Ver Tutorial interactivo
-            </button>
+            {#if hasTutorial}
+              <button
+                on:click={openTutorial}
+                class="flex-1 py-3 md:py-4 border-2 border-[#c41e3a] text-[#c41e3a] rounded-lg font-bold
+                       hover:bg-[#c41e3a] hover:text-white transition-all"
+              >
+                Ver Tutorial interactivo
+              </button>
+            {:else}
+              <button
+                disabled
+                class="flex-1 py-3 md:py-4 border-2 border-gray-300 text-gray-400 rounded-lg font-bold
+                       cursor-not-allowed opacity-60"
+              >
+                Tutorial (próximamente)
+              </button>
+            {/if}
           </div>
         </div>
       </div>
@@ -413,10 +417,10 @@
               <p
                 class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
               >
-                NotebookLM · Guiado
+                {currentTutorialLabel} · Guiado
               </p>
               <h3 class="text-xl md:text-2xl font-bold text-white">
-                ExpoMinera 2026
+                {selectedTool?.name || "Tutorial"}
               </h3>
             </div>
             <button
@@ -459,26 +463,28 @@
           class="flex-1 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-6"
         >
           <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
-            <span class="text-[#c41e3a]">Paso {tutorialStep + 1}:</span>
+            <span class="text-cyan-400">Paso {tutorialStep + 1}:</span>
             <span class="text-white"
-              >{notebookTutorialSteps[tutorialStep].title}</span
+              >{currentTutorialSteps[tutorialStep].title}</span
             >
           </h4>
 
           <p class="text-base md:text-lg leading-snug text-white/80">
-            {notebookTutorialSteps[tutorialStep].description}
+            {currentTutorialSteps[tutorialStep].description}
           </p>
 
-          <div
-            class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl mt-6 md:mt-8"
-          >
-            <p
-              class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
+          {#if currentTutorialSteps[tutorialStep].tip}
+            <div
+              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-6 rounded-2xl mt-6 md:mt-8"
             >
-              <span class="text-xl md:text-2xl shrink-0">💡</span>
-              {notebookTutorialSteps[tutorialStep].tip}
-            </p>
-          </div>
+              <p
+                class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
+              >
+                <span class="text-xl md:text-2xl shrink-0">💡</span>
+                {currentTutorialSteps[tutorialStep].tip}
+              </p>
+            </div>
+          {/if}
         </div>
 
         <div
@@ -492,7 +498,7 @@
             Anterior
           </button>
 
-          {#if tutorialStep < notebookTutorialSteps.length - 1}
+          {#if tutorialStep < currentTutorialSteps.length - 1}
             <button
               on:click={nextStep}
               class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-8 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/5"
@@ -533,9 +539,9 @@
           <div
             class="relative w-full h-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-white/5"
           >
-            {#if notebookTutorialSteps[tutorialStep].image}
+            {#if currentTutorialSteps[tutorialStep].image}
               <img
-                src={notebookTutorialSteps[tutorialStep].image}
+                src={currentTutorialSteps[tutorialStep].image}
                 alt="Escena del tutorial"
                 class="w-full h-full object-contain select-none"
               />
