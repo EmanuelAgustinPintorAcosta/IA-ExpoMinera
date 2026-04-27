@@ -5,6 +5,8 @@
   let isNotebookModalOpen = false;
   let notebookStep = 0;
 
+  type TutorialKey = "notebooklm" | "magic" | "chatgpt";
+
   type ToolCategory =
     | "todas"
     | "contenido"
@@ -12,7 +14,20 @@
     | "evaluacion"
     | "creatividad";
 
-  const tools = [
+  type Tool = {
+    name: string;
+    badge: string;
+    category: ToolCategory;
+    icon: string;
+    description: string;
+    tags: string[];
+    difficulty: 1 | 2 | 3;
+    url: string;
+    hasDemo: boolean;
+    demoKey?: TutorialKey;
+  };
+
+  const tools: Tool[] = [
     {
       name: "NotebookLM",
       badge: "Destacada",
@@ -24,6 +39,7 @@
       difficulty: 1,
       url: "https://notebooklm.google.com",
       hasDemo: true,
+      demoKey: "notebooklm",
     },
     {
       name: "ChatGPT",
@@ -35,7 +51,8 @@
       tags: ["clases", "ideas", "rúbricas"],
       difficulty: 1,
       url: "https://chatgpt.com",
-      hasDemo: false,
+      hasDemo: true,
+      demoKey: "chatgpt",
     },
     {
       name: "Canva IA",
@@ -83,9 +100,10 @@
       tags: ["planificación", "adaptaciones", "plantillas"],
       difficulty: 2,
       url: "https://www.magicschool.ai",
-      hasDemo: false,
+      hasDemo: true,
+      demoKey: "magic",
     },
-  ] as const;
+  ];
 
   const stats = [
     {
@@ -108,43 +126,135 @@
     },
   ] as const;
 
-  const notebookTutorialSteps = [
-    {
-      title: "Crear el espacio de trabajo",
-      description:
-        'Ingresá a NotebookLM con tu cuenta de Google. Hacé clic en el botón "+" o "Crear nuevo" para empezar. ',
-      tip: "Tip: Usá un bloc de notas distinto para cada unidad o proyecto para no mezclar temas.",
-      image: "/paso1.png",
+  const tutorialCatalog = {
+    notebooklm: {
+      label: "NotebookLM",
+      accent: "from-cyan-300 to-blue-400",
+      steps: [
+        {
+          title: "Crear el espacio de trabajo",
+          description:
+            'Ingresá a NotebookLM con tu cuenta de Google. Tocá el botón "+" o "Crear nuevo" para arrancar con un bloc pensado para una unidad o proyecto.',
+          tip: "Tip: Separá cada materia o secuencia en un bloc distinto para mantener orden y trazabilidad.",
+          image: "/paso1.png",
+        },
+        {
+          title: "Cargar las fuentes correctas",
+          description:
+            'En el panel de fuentes subí PDFs, enlaces web o videos que realmente representen el contenido de la clase. Cuanto mejor la base, mejor el resultado.',
+          tip: "Tip: Elegí pocas fuentes, pero sólidas. Menos ruido = mejores respuestas.",
+          image: "/paso2.png",
+        },
+        {
+          title: "Dejar que la IA organice la base",
+          description:
+            "NotebookLM genera resúmenes, preguntas y materiales iniciales apoyados en tus documentos. Usalo para ganar tiempo y revisar el enfoque antes de presentar la clase.",
+          tip: "Tip: Revisá el resumen inicial y ajustá el nombre del proyecto para que sea entendible para vos y para otros docentes.",
+          image: "/paso3.png",
+        },
+        {
+          title: "Conversar con el material",
+          description:
+            'Pedile tareas concretas: preguntas, comparaciones, ideas de clase o explicaciones simples. La IA responde desde las fuentes cargadas, así que el contexto queda controlado.',
+          tip: "Tip: Si una respuesta te sirve, preguntá de nuevo pidiendo una versión más breve, más visual o más didáctica.",
+          image: "/paso4.png",
+        },
+        {
+          title: "Convertir resultados en clase",
+          description:
+            "Guardá los mejores fragmentos, reorganizalos y transformalos en una secuencia real. NotebookLM es más valioso cuando pasa de resumen a planificación.",
+          tip: "Tip: Cerrá cada sesión con un entregable concreto: guía, consigna, esquema o actividad.",
+          image: "/paso5.png",
+        },
+      ],
     },
-    {
-      title: "Cargar las fuentes",
-      description:
-        'En el panel izquierdo vas a ver el menú "Fuentes". Ahí podés subir los PDFs con la bibliografía de tu materia, pegar links de artículos web o incluso enlaces a videos de YouTube que uses en clase.',
-      tip: "Tip: Podés subir hasta 50 documentos distintos en un solo bloc de notas.",
-      image: "/paso2.png",
+    magic: {
+      label: "MagicSchool",
+      accent: "from-yellow-300 to-orange-500",
+      steps: [
+        {
+          title: "Elegir el objetivo docente",
+          description:
+            "Arrancá definiendo qué necesitás resolver: planificar, adaptar, evaluar o crear material. MagicSchool funciona mejor cuando el pedido está centrado en una necesidad real del aula.",
+          tip: "Tip: Pensá primero en el resultado final. Eso le da dirección al asistente y ahorra iteraciones.",
+          image: "/magic1.jpg",
+        },
+        {
+          title: "Generar la base de la clase",
+          description:
+            "Pedile un borrador inicial de secuencia, consigna o actividad. La idea no es copiar y pegar: es conseguir una primera versión usable para empezar más rápido.",
+          tip: "Tip: Pedí siempre una versión corta y otra extendida para elegir según el tiempo disponible.",
+          image: "/magic2.jpg",
+        },
+        {
+          title: "Ajustar nivel y contexto",
+          description:
+            "Refiná el contenido según curso, edad, tiempo y recursos disponibles. Ahí está el valor real: convertir una propuesta genérica en algo enseñable en tu clase.",
+          tip: "Tip: Indicá grado, tiempo de clase y tema exacto. Esa información mejora muchísimo la salida.",
+          image: "/magic3.jpg",
+        },
+        {
+          title: "Transformar en recursos listos",
+          description:
+            "Usá MagicSchool para convertir la idea inicial en rúbricas, preguntas, actividades o andamiajes. La herramienta suma valor cuando acelera el armado de materiales concretos.",
+          tip: "Tip: Pedí variantes por nivel de dificultad para atender grupos con ritmos distintos.",
+          image: "/magic4.jpg",
+        },
+        {
+          title: "Guardar tu kit pedagógico",
+          description:
+            "Dejá lista una versión final para reutilizarla, editarla o compartirla con colegas. La meta es construir una pequeña biblioteca de clases que puedas volver a usar.",
+          tip: "Tip: Guardá el resultado con nombre de tema + curso + año para encontrarlo después sin perder tiempo.",
+          image: "/magic5.jpg",
+        },
+      ],
     },
-    {
-      title: "Aprovechar el análisis automático",
-      description:
-        'Apenas termines de subir tus fuentes, NotebookLM genera automáticamente un "Resumen de las fuentes" y una guía de estudio inicial. Revisá este material base; es excelente para usar como introducción a la clase.Dale un nombre claro a tu proyecto, por ejemplo: “Unidad 3: Geografía Argentina - 4° Año”.',
-      tip: 'Tip: Hacé clic en "Guía de estudio" arriba a la derecha para ver preguntas frecuentes sugeridas.',
-      image: "/paso3.png",
+    chatgpt: {
+      label: "ChatGPT",
+      accent: "from-rose-400 to-red-600",
+      steps: [
+        {
+          title: "Plantear una consigna clara",
+          description:
+            "Empezá diciendo qué querés lograr, para quién es y en qué contexto se va a usar. Cuanto más concreto sea el pedido, más útil va a ser la respuesta.",
+          tip: "Tip: Usá el formato objetivo + curso + tiempo + producto esperado.",
+          image: "/chatgpt1.jpg",
+        },
+        {
+          title: "Pedir una salida concreta",
+          description:
+            "No te quedes en una idea general. Pedile una tabla, una lista de pasos, una rúbrica o una actividad final. ChatGPT rinde mejor cuando el formato está definido.",
+          tip: "Tip: Si necesitás algo para clase, pedí que lo devuelva listo para copiar en una diapositiva o guía.",
+          image: "/chatgpt2.jpg",
+        },
+        {
+          title: "Iterar y refinar",
+          description:
+            "La primera respuesta casi nunca es la mejor. Usá repreguntas para ajustar dificultad, tono, duración o profundidad del contenido hasta que quede usable.",
+          tip: "Tip: Pedí versiones 'más simple', 'más breve' o 'más desafiante' según el grupo.",
+          image: "/chatgpt3.jpg",
+        },
+        {
+          title: "Verificar calidad y coherencia",
+          description:
+            "Revisá si la propuesta realmente coincide con lo que necesitás. La IA ayuda, pero el criterio pedagógico sigue siendo tuyo: esa revisión es parte del valor profesional.",
+          tip: "Tip: Pedí que justifique la propuesta o que marque supuestos para detectar errores rápido.",
+          image: "/chatgpt4.jpg",
+        },
+        {
+          title: "Convertir el resultado en plantilla",
+          description:
+            "Cuando te funcione un prompt, guardalo como plantilla para reutilizarlo con otros temas. Ahí ChatGPT deja de ser una consulta aislada y pasa a ser una herramienta de producción continua.",
+          tip: "Tip: Armá un banco de prompts por materia, por tipo de actividad y por nivel.",
+          image: "/chatgpt5.jpg",
+        },
+      ],
     },
-    {
-      title: "Dialogar con tus documentos",
-      description:
-        'En la barra inferior tenés el cuadro de chat. A diferencia de ChatGPT, acá la IA solo responde basándose en los textos que vos le subiste. Pedile cosas específicas: "Armá 5 preguntas de comprensión lectora sobre el capítulo 2".',
-      tip: "Tip: Si la IA te da un dato, te va a poner un numerito. Hacé clic ahí para ver en qué párrafo exacto de tu PDF sacó esa información.",
-      image: "/paso4.png",
-    },
-    {
-      title: "Guardar y armar la clase",
-      description:
-        "Cuando la IA te devuelva un material que te sirva (una rúbrica, una consigna, un resumen), hacé clic en el ícono del pin (la chinche) en la respuesta. Esto lo guarda como una nota fija en tu panel para que la copies y pegues en tu planificación.",
-      tip: 'Tip: Juntá varias notas guardadas y pedile a la IA: "Usá estas notas para armarme la secuencia didáctica de la clase de hoy".',
-      image: "/paso5.png",
-    },
-  ] as const;
+  } as const;
+
+  type TutorialCatalogKey = keyof typeof tutorialCatalog;
+
+  let activeTutorialKey: TutorialCatalogKey = "notebooklm";
 
   const categories: { id: ToolCategory; label: string }[] = [
     { id: "todas", label: "Todas" },
@@ -184,8 +294,9 @@
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  const openNotebookDemo = () => {
+  const openNotebookDemo = (tutorialKey: TutorialCatalogKey = "notebooklm") => {
     notebookStep = 0;
+    activeTutorialKey = tutorialKey;
     isNotebookModalOpen = true;
     document.body.style.overflow = "hidden";
   };
@@ -196,7 +307,7 @@
   };
 
   const nextNotebookStep = () => {
-    if (notebookStep < notebookTutorialSteps.length - 1) notebookStep += 1;
+    if (notebookStep < currentTutorialSteps.length - 1) notebookStep += 1;
   };
 
   const prevNotebookStep = () => {
@@ -345,7 +456,9 @@
       ? tools
       : tools.filter((tool) => tool.category === activeCategory);
   $: notebookProgress =
-    ((notebookStep + 1) / notebookTutorialSteps.length) * 100;
+    ((notebookStep + 1) / currentTutorialSteps.length) * 100;
+  $: currentTutorial = tutorialCatalog[activeTutorialKey];
+  $: currentTutorialSteps = currentTutorial.steps;
 </script>
 
 <div
@@ -408,7 +521,7 @@
         >
           Empezar ahora
         </button>
-
+          on:click={() => openNotebookDemo()}
         <button
           class="rounded-full border border-white/20 bg-white/5 px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold text-white/90 hover:bg-white/10 whitespace-nowrap transition-all flex items-center justify-center gap-1"
           on:click={() => {
@@ -525,7 +638,7 @@
             Explorar ahora
           </button>
           <button
-            on:click={openNotebookDemo}
+            on:click={() => openNotebookDemo()}
             class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15 transition-all"
           >
             Abrir demo de tutorial NotebookLM
@@ -662,7 +775,7 @@
             </div>
 
             <button
-              on:click={tool.hasDemo ? openNotebookDemo : null}
+              on:click={tool.hasDemo ? () => openNotebookDemo(tool.demoKey) : null}
               class="mt-3 w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all {tool.hasDemo
                 ? 'border-cyan-300/40 bg-cyan-400/10 text-cyan-200 hover:bg-cyan-400/20'
                 : 'border-white/10 bg-white/5 text-white/30 cursor-not-allowed opacity-50'}"
@@ -691,7 +804,7 @@
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-[400px] lg:w-[450px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
+          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
         >
           <!-- Header & Progress -->
           <div
@@ -723,7 +836,7 @@
               >
                 <span>Progreso</span>
                 <span
-                  >Paso {notebookStep + 1} / {notebookTutorialSteps.length}</span
+                  >Paso {notebookStep + 1} / {currentTutorialSteps.length}</span
                 >
               </div>
               <div
@@ -742,13 +855,11 @@
           >
             <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
               <span class="text-cyan-400">Paso {notebookStep + 1}:</span>
-              <span class="text-white"
-                >{notebookTutorialSteps[notebookStep].title}</span
-              >
+              <span class="text-white">{currentTutorialSteps[notebookStep].title}</span>
             </h4>
 
             <p class="text-base md:text-lg leading-snug text-white/80">
-              {notebookTutorialSteps[notebookStep].description}
+              {currentTutorialSteps[notebookStep].description}
             </p>
 
             <div
@@ -758,17 +869,17 @@
                 class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
               >
                 <span class="text-xl md:text-2xl shrink-0">💡</span>
-                {notebookTutorialSteps[notebookStep].tip}
+                {currentTutorialSteps[notebookStep].tip}
               </p>
             </div>
 
             <!-- Imagen inline para móviles y tablets (debajo del tip) -->
-            {#if notebookTutorialSteps[notebookStep].image}
+            {#if currentTutorialSteps[notebookStep].image}
               <div
                 class="block lg:hidden w-full mt-4 rounded-xl overflow-hidden border border-white/10 bg-slate-800 shadow-inner"
               >
                 <img
-                  src={notebookTutorialSteps[notebookStep].image}
+                  src={currentTutorialSteps[notebookStep].image}
                   alt="Pantalla del paso {notebookStep + 1}"
                   class="w-full h-auto max-h-350px md:max-h-500px object-contain select-none"
                 />
@@ -788,7 +899,7 @@
               ← Anterior
             </button>
 
-            {#if notebookStep < notebookTutorialSteps.length - 1}
+            {#if notebookStep < currentTutorialSteps.length - 1}
               <button
                 on:click={nextNotebookStep}
                 class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
@@ -822,9 +933,9 @@
             <div
               class="relative w-full h-full bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-white/5"
             >
-              {#if notebookTutorialSteps[notebookStep].image}
+              {#if currentTutorialSteps[notebookStep].image}
                 <img
-                  src={notebookTutorialSteps[notebookStep].image}
+                  src={currentTutorialSteps[notebookStep].image}
                   alt="Pantalla del paso {notebookStep + 1}"
                   class="w-full h-full object-contain opacity-95 select-none"
                 />
