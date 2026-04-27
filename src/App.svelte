@@ -5,7 +5,7 @@
   let isNotebookModalOpen = false;
   let notebookStep = 0;
 
-  type TutorialKey = "notebooklm" | "magic" | "chatgpt";
+  type TutorialKey = "notebooklm" | "magic" | "chatgpt" | "wayground";
 
   type ToolCategory =
     | "todas"
@@ -88,7 +88,8 @@
       tags: ["quizzes", "reportes", "gamificación"],
       difficulty: 1,
       url: "https://wayground.com",
-      hasDemo: false,
+      hasDemo: true,
+      demoKey: "wayground",
     },
     {
       name: "MagicSchool",
@@ -209,6 +210,47 @@
         },
       ],
     },
+    wayground: {
+      label: "Wayground",
+      accent: "from-emerald-300 to-teal-500",
+      steps: [
+        {
+          title: "Crear la evaluación inicial",
+          description:
+            "Ingresá a Wayground y creá un nuevo quiz desde cero o con apoyo de IA. Definí primero objetivo, tema y tipo de evaluación para que la actividad tenga foco pedagógico.",
+          tip: "Tip: Empezá con 8 a 12 preguntas para una primera prueba rápida y efectiva.",
+          image: "/wayground1.jpg",
+        },
+        {
+          title: "Configurar preguntas con intención didáctica",
+          description:
+            "Combiná preguntas de opción múltiple, verdadero/falso y respuesta corta para medir comprensión real y no solo memoria. Ajustá el nivel según el curso.",
+          tip: "Tip: Mezclá 70% preguntas de comprensión y 30% de aplicación para evaluar mejor el aprendizaje.",
+          image: "/wayground2.jpg",
+        },
+        {
+          title: "Personalizar dinámica y tiempos",
+          description:
+            "Definí tiempos por pregunta, puntajes y modo de juego (individual o grupal). Una buena configuración transforma una evaluación común en una experiencia motivadora.",
+          tip: "Tip: Si es diagnóstico, usá tiempos más amplios para priorizar calidad de respuesta.",
+          image: "/wayground3.jpg",
+        },
+        {
+          title: "Lanzar y monitorear en vivo",
+          description:
+            "Compartí el código del juego y seguí el progreso del curso en tiempo real. Wayground permite detectar rápido qué temas se entendieron y cuáles necesitan refuerzo.",
+          tip: "Tip: Hacé una pausa a mitad del juego para comentar errores frecuentes y consolidar conceptos.",
+          image: "/wayground4.jpg",
+        },
+        {
+          title: "Analizar resultados y reutilizar",
+          description:
+            "Revisá reportes por estudiante y por pregunta para tomar decisiones pedagógicas. Guardá la actividad como plantilla para futuras comisiones o próximos años.",
+          tip: "Tip: Exportá resultados y marcá 3 focos de mejora para planificar la clase siguiente.",
+          image: "/wayground5.jpg",
+        },
+      ],
+    },
     chatgpt: {
       label: "ChatGPT",
       accent: "from-rose-400 to-red-600",
@@ -242,10 +284,10 @@
           image: "/chatgpt4.jpg",
         },
         {
-          title: "Convertir el resultado en plantilla",
+          title: "Compartir la respuesta con tu equipo",
           description:
-            "Cuando te funcione un prompt, guardalo como plantilla para reutilizarlo con otros temas. Ahí ChatGPT deja de ser una consulta aislada y pasa a ser una herramienta de producción continua.",
-          tip: "Tip: Armá un banco de prompts por materia, por tipo de actividad y por nivel.",
+            "Cuando obtengas una respuesta sólida, usá la opción de compartir para generar un enlace y enviarlo a colegas o al equipo directivo. Así alinean criterios y validan juntos el material antes de usarlo en clase.",
+          tip: "Tip: Compartí la conversación junto con una nota de contexto (curso, objetivo y duración) para que otros la reutilicen mejor.",
           image: "/chatgpt5.jpg",
         },
       ],
