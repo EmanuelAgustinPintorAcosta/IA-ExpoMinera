@@ -563,7 +563,6 @@
         >
           Empezar ahora
         </button>
-          on:click={() => openNotebookDemo()}
         <button
           class="rounded-full border border-white/20 bg-white/5 px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold text-white/90 hover:bg-white/10 whitespace-nowrap transition-all flex items-center justify-center gap-1"
           on:click={() => {
@@ -1018,16 +1017,21 @@
 
   .bright-mode {
     background: radial-gradient(
-        circle at 10% 20%,
-        rgba(250, 204, 21, 0.22),
-        transparent 40%
+        circle at 12% 18%,
+        rgba(250, 204, 21, 0.4),
+        transparent 44%
       ),
       radial-gradient(
-        circle at 85% 10%,
-        rgba(244, 114, 182, 0.22),
-        transparent 35%
+        circle at 86% 12%,
+        rgba(251, 146, 60, 0.34),
+        transparent 38%
       ),
-      #111827;
+      radial-gradient(
+        circle at 50% 100%,
+        rgba(125, 211, 252, 0.2),
+        transparent 46%
+      ),
+      #2f3f5f;
   }
 
   .glass-card {
