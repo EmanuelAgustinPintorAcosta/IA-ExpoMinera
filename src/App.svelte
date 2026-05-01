@@ -354,24 +354,25 @@
     class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl"
   >
     <nav
-      class="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-4"
+      class="mx-auto flex w-full max-w-7xl 2xl:max-w-none items-center justify-between px-6 md:px-12 2xl:px-32 3xl:px-64 4xl:px-80 5xl:px-96 py-6 3xl:py-12"
     >
-      <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
+      <div class="flex items-center gap-2 md:gap-3 3xl:gap-6 overflow-hidden">
         <span
-          class="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
+          class="flex h-9 w-9 3xl:h-16 3xl:w-16 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
           ><img
             src="/LOGO-IAenlamochila.png"
             alt="logo"
             class="h-full w-full object-contain"
           /></span
         >
-        <div class="shrink min-w-0 pr-2">
-          <p class="text-xs md:text-sm text-white/70 truncate">
-            ExpoMinera 2026 · San Juan
-          </p>
-          <p class="text-sm md:text-base font-semibold tracking-wide truncate">
-            IA en la Mochila
-          </p>
+        <div class="flex flex-col leading-tight">
+          <span
+            class="text-xs font-medium text-amber-400 md:text-sm 3xl:text-2xl"
+            >ExpoMinera 2026 - San Juan</span
+          >
+          <span class="text-base font-bold text-white md:text-lg 3xl:text-4xl"
+            >IA en la Mochila</span
+          >
         </div>
       </div>
 
@@ -414,7 +415,7 @@
 
   <main class="relative z-10">
     <section
-      class="scroll-reveal mx-auto max-w-7xl px-6 pb-16 pt-8 md:pb-24 md:pt-12"
+      class="scroll-reveal mx-auto w-full max-w-7xl 2xl:max-w-none px-6 md:px-12 2xl:px-32 3xl:px-64 4xl:px-80 5xl:px-96 pb-16 pt-8 md:pb-24 md:pt-12"
       use:revealOnScroll
       data-reveal-start-delay="80"
     >
@@ -428,51 +429,53 @@
 
         <h1 class="w-full font-black tracking-tighter">
           <span
-            class="text-yellow-400 block leading-[1.05] text-[11vw] sm:text-[9vw] md:text-[8vw]"
+            class="text-yellow-400 block leading-[1.05] text-[11vw] sm:text-[9vw] md:text-[8vw] 3xl:text-[10vw] 4xl:text-[12vw]"
           >
             Descubrí y usá IA en Educación
           </span>
           <span
-            class="text-white block mt-4 md:mt-6 leading-[1.05] text-[7vw] sm:text-[6vw] md:text-[5vw]"
+            class="text-white block mt-4 md:mt-6 leading-[1.05] text-[7vw] sm:text-[6vw] md:text-[5vw] 3xl:text-[7vw] 4xl:text-[8vw]"
           >
             de forma simple y poderosa
           </span>
         </h1>
 
-        <p class="mt-8 max-w-4xl text-xl text-white/75 md:text-2xl">
+        <p
+          class="mt-8 max-w-4xl 2xl:max-w-6xl 3xl:max-w-7xl 4xl:max-w-none text-xl text-white/75 md:text-2xl 3xl:text-5xl 4xl:text-6xl leading-relaxed"
+        >
           Una landing pensada para impactar: catálogo visual de herramientas,
           tutoriales guiados y casos de uso reales para transformar clases y
           aprendizaje.
         </p>
 
         <div
-          class="mt-10 flex flex-col sm:flex-row w-full items-center justify-center gap-4 sm:gap-8 md:gap-16"
+          class="mt-10 3xl:mt-24 flex flex-col sm:flex-row w-full items-center justify-center gap-4 sm:gap-8 md:gap-16 3xl:gap-24"
         >
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="w-full sm:w-auto rounded-xl bg-white px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-slate-900 hover:scale-[1.03] transition-all whitespace-nowrap"
+            class="w-full sm:w-auto rounded-xl bg-white px-6 md:px-12 py-3 md:py-6 3xl:px-24 3xl:py-12 text-base md:text-2xl 3xl:text-6xl font-black text-slate-900 hover:scale-[1.05] transition-all whitespace-nowrap"
           >
             Ver herramientas
           </button>
           <button
             on:click={() => scrollToSection("tutoriales")}
-            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-white hover:bg-white/10 transition-all whitespace-nowrap"
+            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 md:px-12 py-3 md:py-6 3xl:px-24 3xl:py-12 text-base md:text-2xl 3xl:text-6xl font-black text-white hover:bg-white/10 transition-all whitespace-nowrap"
           >
             Ver tutoriales
           </button>
         </div>
       </div>
 
-      <div class="mt-12 grid gap-4 sm:grid-cols-3">
+      <div class="mt-12 3xl:mt-32 grid gap-4 3xl:gap-12 sm:grid-cols-3">
         {#each stats as stat, i}
           <article
-            class="scroll-reveal glass-card tilt-card p-5"
+            class="scroll-reveal glass-card tilt-card p-5 3xl:p-20 4xl:p-32 flex flex-col justify-center"
             use:tilt3d
             use:revealOnScroll
             data-reveal-delay={`${i * 120}ms`}
           >
             <p
-              class="text-3xl font-black"
+              class="text-3xl 3xl:text-7xl 4xl:text-9xl font-black"
               use:countUp={{
                 end: stat.value,
                 prefix: stat.prefix,
@@ -481,7 +484,11 @@
             >
               {stat.prefix}0{stat.suffix}
             </p>
-            <p class="mt-1 text-sm text-white/70">{stat.label}</p>
+            <p
+              class="mt-1 text-sm 3xl:text-3xl 4xl:text-5xl text-white/70 font-medium"
+            >
+              {stat.label}
+            </p>
           </article>
         {/each}
       </div>
@@ -489,32 +496,38 @@
 
     <section
       id="impacto"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24"
+      class="scroll-reveal section-anchor mx-auto w-full max-w-7xl 2xl:max-w-none px-6 md:px-12 2xl:px-32 3xl:px-64 4xl:px-80 5xl:px-96 pb-24"
       use:revealOnScroll
     >
       <div
-        class="rounded-3xl border border-white/15 bg-linear-to-r from-rose-500/20 via-orange-400/20 to-amber-300/20 p-8 md:p-12"
+        class="rounded-3xl border border-white/15 bg-linear-to-r from-rose-500/20 via-orange-400/20 to-amber-300/20 p-8 md:p-12 3xl:p-32 4xl:p-48"
         use:tilt3d
       >
-        <h2 class="text-3xl font-black text-white md:text-5xl">
+        <h2
+          class="text-3xl font-black text-white md:text-5xl 3xl:text-8xl 4xl:text-9xl mb-6 3xl:mb-12"
+        >
           Una experiencia que sí se siente ExpoMinera 2026
         </h2>
-        <p class="mt-4 max-w-3xl text-lg text-white/80">
+        <p
+          class="mt-4 max-w-3xl 3xl:max-w-6xl text-lg 3xl:text-4xl 4xl:text-5xl text-white/80 3xl:leading-relaxed"
+        >
           Diseño inmersivo, navegación clara y foco educativo. Esta landing
           queda lista para crecer con más IA, más tutoriales y métricas de
           adopción en tiempo real.
         </p>
 
-        <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
+        <div
+          class="mt-8 3xl:mt-24 flex flex-col sm:flex-row items-center gap-4 3xl:gap-16"
+        >
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="w-full sm:w-auto rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03] transition-all"
+            class="w-full sm:w-auto rounded-xl bg-white px-6 py-3 3xl:px-24 3xl:py-12 text-base 3xl:text-5xl 4xl:text-6xl font-black text-slate-900 hover:scale-[1.05] transition-all"
           >
             Explorar ahora
           </button>
           <button
             on:click={() => openNotebookDemo()}
-            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15 transition-all"
+            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/10 px-6 py-3 3xl:px-24 3xl:py-12 text-base 3xl:text-5xl 4xl:text-6xl font-black text-white hover:bg-white/15 transition-all"
           >
             Abrir demo de tutorial NotebookLM
           </button>
@@ -524,34 +537,53 @@
 
     <section
       id="tutoriales"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24 md:pb-32"
+      class="scroll-reveal section-anchor mx-auto w-full max-w-7xl 2xl:max-w-none px-6 md:px-12 2xl:px-32 3xl:px-64 4xl:px-80 5xl:px-96 pb-24 md:pb-32"
       use:revealOnScroll
     >
-      <div class="glass-card tilt-card p-8 md:p-12" use:tilt3d>
-        <p class="text-sm uppercase tracking-[0.2em] text-white/50">
+      <div
+        class="glass-card tilt-card p-8 md:p-12 3xl:p-32 4xl:p-48"
+        use:tilt3d
+      >
+        <p
+          class="text-sm uppercase tracking-[0.2em] text-white/50 3xl:text-3xl 3xl:mb-6"
+        >
           Aprendizaje guiado
         </p>
-        <h2 class="mt-3 text-3xl font-extrabold text-white md:text-4xl">
+        <h2
+          class="mt-3 text-3xl font-extrabold text-white md:text-4xl 3xl:text-8xl 4xl:text-9xl"
+        >
           Tutoriales dentro de la app
         </h2>
-        <p class="mt-3 max-w-2xl text-white/70">
+        <p
+          class="mt-3 3xl:mt-10 max-w-2xl 3xl:max-w-5xl text-white/70 3xl:text-4xl 4xl:text-5xl 3xl:leading-relaxed"
+        >
           Inspirado en plataformas de aprendizaje modernas: pasos cortos,
           visuales y orientados a resultados para que cualquiera pueda empezar
           sin fricción.
         </p>
 
-        <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <div class="mt-8 3xl:mt-24 grid gap-4 3xl:gap-12 md:grid-cols-3">
           {#each tutorials as item, i}
             <article
-              class="scroll-reveal rounded-2xl border border-white/15 bg-white/5 p-5"
+              class="scroll-reveal rounded-2xl border border-white/15 bg-white/5 p-5 3xl:p-16 4xl:p-24 flex flex-col justify-center"
               use:revealOnScroll
               data-reveal-delay={`${i * 140}ms`}
             >
-              <p class="text-xs tracking-[0.2em] text-amber-300">
+              <p
+                class="text-xs 3xl:text-2xl tracking-[0.2em] text-amber-300 font-bold mb-2 3xl:mb-6"
+              >
                 PASO {item.step}
               </p>
-              <h3 class="mt-2 text-xl font-bold text-white">{item.title}</h3>
-              <p class="mt-2 text-sm text-white/70">{item.text}</p>
+              <h3
+                class="mt-2 text-xl 3xl:text-5xl 4xl:text-6xl font-black text-white leading-tight"
+              >
+                {item.title}
+              </h3>
+              <p
+                class="mt-2 3xl:mt-6 text-sm 3xl:text-3xl 4xl:text-4xl text-white/70 leading-relaxed"
+              >
+                {item.text}
+              </p>
             </article>
           {/each}
         </div>
@@ -560,28 +592,32 @@
 
     <section
       id="herramientas"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20"
+      class="scroll-reveal section-anchor mx-auto w-full max-w-7xl 2xl:max-w-none px-6 md:px-12 2xl:px-32 3xl:px-64 4xl:px-80 5xl:px-96 pb-20"
       use:revealOnScroll
     >
-      <div class="glass-card p-6 md:p-8 mb-8">
-        <div class="mb-6">
-          <p class="text-sm uppercase tracking-[0.2em] text-white/50">
+      <div class="glass-card p-6 md:p-8 3xl:p-24 4xl:p-32 mb-8 3xl:mb-20">
+        <div class="mb-6 3xl:mb-16">
+          <p
+            class="text-sm 3xl:text-3xl uppercase tracking-[0.2em] text-white/50 mb-2 3xl:mb-6"
+          >
             Elegidas para el aula
           </p>
-          <h2 class="mt-2 text-3xl font-extrabold text-white md:text-4xl">
+          <h2
+            class="mt-2 text-3xl 3xl:text-8xl 4xl:text-9xl font-extrabold text-white leading-tight"
+          >
             Herramientas destacadas
           </h2>
         </div>
 
-        <div class="flex flex-wrap gap-2 md:gap-3">
+        <div class="flex flex-wrap gap-2 md:gap-3 3xl:gap-8">
           {#each categories as category}
             <button
               on:click={() => {
                 activeCategory = category.id;
               }}
-              class="rounded-full border px-4 py-2 text-xs md:text-sm font-medium transition {activeCategory ===
+              class="rounded-full border px-4 py-2 3xl:px-12 3xl:py-6 text-xs md:text-sm 3xl:text-4xl font-black transition {activeCategory ===
               category.id
-                ? 'border-white bg-white text-slate-900'
+                ? 'border-white bg-white text-slate-900 shadow-xl scale-110'
                 : 'border-white/20 bg-white/5 text-white/80 hover:bg-white/10'}"
             >
               {category.label}
@@ -681,7 +717,7 @@
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
+          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 3xl:w-[600px] 4xl:w-[800px] bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
         >
           <!-- Header & Progress -->
           <div
@@ -694,7 +730,9 @@
                 >
                   {currentTutorial.label} · Guiado
                 </p>
-                <h3 class="text-xl md:text-2xl font-bold text-white">
+                <h3
+                  class="text-xl md:text-2xl 3xl:text-4xl font-bold text-white"
+                >
                   ExpoMinera 2026
                 </h3>
               </div>
@@ -730,14 +768,18 @@
           <div
             class="flex-1 min-h-0 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-5"
           >
-            <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
+            <h4
+              class="text-2xl md:text-3xl 3xl:text-5xl font-black leading-tight mb-4"
+            >
               <span class="text-cyan-400">Paso {notebookStep + 1}:</span>
               <span class="text-white"
                 >{currentTutorialSteps[notebookStep].title}</span
               >
             </h4>
 
-            <p class="text-base md:text-lg leading-snug text-white/80">
+            <p
+              class="text-base md:text-lg 3xl:text-3xl leading-snug text-white/80"
+            >
               {currentTutorialSteps[notebookStep].description}
             </p>
 
@@ -745,9 +787,10 @@
               class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl mt-6 md:mt-8"
             >
               <p
-                class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
+                class="text-sm md:text-base 3xl:text-2xl font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
               >
-                <span class="text-xl md:text-2xl shrink-0">💡</span>
+                <span class="text-xl md:text-2xl 3xl:text-4xl shrink-0">💡</span
+                >
                 {currentTutorialSteps[notebookStep].tip}
               </p>
             </div>
