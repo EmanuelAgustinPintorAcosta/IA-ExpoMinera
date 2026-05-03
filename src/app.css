@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+  --breakpoint-5xl: 3840px;
+}
+
 :root {
   --primary-color: #c41e3a;
   --secondary-color: #d97706;
@@ -31,6 +37,14 @@ body {
   background: #f9f9f9;
   color: var(--text);
   font-family: var(--sans);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
