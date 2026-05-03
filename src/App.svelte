@@ -354,22 +354,22 @@
     class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl"
   >
     <nav
-      class="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-4"
+      class="mx-auto flex max-w-7xl [@media(min-width:1921px)]:max-w-[90%] items-center justify-between px-4 md:px-6 py-4 [@media(min-width:1921px)]:py-16"
     >
       <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
         <span
-          class="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg shrink-0"
+          class="hidden sm:inline-flex h-9 w-9 [@media(min-width:1921px)]:h-36 [@media(min-width:1921px)]:w-36 items-center justify-center rounded-2xl bg-white/10 text-lg shrink-0"
           ><img
-            src="/LOGO-IAenlamochila.png"
+            src="/logo.svg"
             alt="logo"
             class="h-full w-full object-contain"
           /></span
         >
-        <div class="shrink min-w-0 pr-2">
-          <p class="text-xs md:text-sm text-white/70 truncate">
+        <div class="shrink min-w-0 pr-2 flex flex-col gap-0.5 md:gap-1 [@media(min-width:1921px)]:gap-4">
+          <p class="text-xs md:text-sm [@media(min-width:1921px)]:text-3xl text-white/70 truncate">
             ExpoMinera 2026 · San Juan
           </p>
-          <p class="text-sm md:text-base font-semibold tracking-wide truncate">
+          <p class="text-sm md:text-base [@media(min-width:1921px)]:text-6xl font-semibold tracking-wide truncate">
             IA en la Mochila
           </p>
         </div>
@@ -378,32 +378,32 @@
       <div class="hidden items-center gap-6 lg:flex shrink-0">
         <button
           on:click={() => scrollToSection("impacto")}
-          class="text-sm text-white/80 hover:text-white">Impacto</button
+          class="text-sm [@media(min-width:1921px)]:text-4xl text-white/80 hover:text-white">Impacto</button
         >
         <button
           on:click={() => scrollToSection("tutoriales")}
-          class="text-sm text-white/80 hover:text-white">Tutoriales</button
+          class="text-sm [@media(min-width:1921px)]:text-4xl text-white/80 hover:text-white">Tutoriales</button
         >
         <button
           on:click={() => scrollToSection("herramientas")}
-          class="text-sm text-white/80 hover:text-white">Herramientas</button
+          class="text-sm [@media(min-width:1921px)]:text-4xl text-white/80 hover:text-white">Herramientas</button
         >
       </div>
 
       <div class="flex items-center gap-2 md:gap-3 shrink-0">
         <button
           on:click={() => scrollToSection("herramientas")}
-          class="rounded-full bg-white px-3 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:scale-105 whitespace-nowrap transition-all"
+          class="rounded-full bg-white px-3 sm:px-5 [@media(min-width:1921px)]:px-16 py-2 [@media(min-width:1921px)]:py-8 text-xs sm:text-sm [@media(min-width:1921px)]:text-4xl font-semibold text-slate-900 hover:scale-105 whitespace-nowrap transition-all"
         >
           Empezar ahora
         </button>
         <button
-          class="rounded-full border border-white/20 bg-white/5 px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold text-white/90 hover:bg-white/10 whitespace-nowrap transition-all flex items-center justify-center gap-1"
+          class="rounded-full border border-white/20 bg-white/5 px-2 sm:px-4 [@media(min-width:1921px)]:px-12 py-2 [@media(min-width:1921px)]:py-8 text-[10px] sm:text-xs [@media(min-width:1921px)]:text-3xl font-semibold text-white/90 hover:bg-white/10 whitespace-nowrap transition-all flex items-center justify-center gap-1"
           on:click={() => {
             isBrightMode = !isBrightMode;
           }}
         >
-          <span>{isBrightMode ? "🌞" : "✨"}</span>
+          <span class="[@media(min-width:1921px)]:text-5xl">{isBrightMode ? "🌞" : "✨"}</span>
           <span class="hidden sm:inline"
             >{isBrightMode ? "Noche" : "Brillante"}</span
           >
@@ -414,65 +414,65 @@
 
   <main class="relative z-10">
     <section
-      class="scroll-reveal mx-auto max-w-7xl px-6 pb-16 pt-8 md:pb-24 md:pt-12"
+      class="scroll-reveal mx-auto max-w-7xl [@media(min-width:1921px)]:max-w-[90%] px-6 pb-16 pt-8 md:pb-24 md:pt-12 [@media(min-width:1921px)]:pb-64 [@media(min-width:1921px)]:pt-32"
       use:revealOnScroll
       data-reveal-start-delay="80"
     >
       <div class="w-full flex flex-col items-start text-left">
         <span
-          class="mb-4 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/80"
+          class="mb-4 [@media(min-width:1921px)]:mb-16 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 [@media(min-width:1921px)]:px-12 py-2 [@media(min-width:1921px)]:py-6 text-sm [@media(min-width:1921px)]:text-5xl text-white/80"
         >
-          <span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+          <span class="h-3 w-3 [@media(min-width:1921px)]:h-8 [@media(min-width:1921px)]:w-8 rounded-full bg-emerald-400"></span>
           Plataforma educativa de IA para toda la comunidad
         </span>
 
         <h1 class="w-full font-black tracking-tighter">
           <span
-            class="text-yellow-400 block leading-[1.05] text-[11vw] sm:text-[9vw] md:text-[8vw]"
+            class="text-yellow-400 block leading-[1.05] text-[min(11vw,100px)] sm:text-[min(9vw,130px)] md:text-[min(8vw,150px)] [@media(min-width:1921px)]:text-[25rem]"
           >
             Descubrí y usá IA en Educación
           </span>
           <span
-            class="text-white block mt-4 md:mt-6 leading-[1.05] text-[7vw] sm:text-[6vw] md:text-[5vw]"
+            class="text-white block mt-4 md:mt-6 leading-[1.05] text-[min(7vw,80px)] sm:text-[min(6vw,100px)] md:text-[min(5vw,120px)] [@media(min-width:1921px)]:text-[18rem]"
           >
             de forma simple y poderosa
           </span>
         </h1>
 
-        <p class="mt-8 max-w-4xl text-xl text-white/75 md:text-2xl">
+        <p class="mt-8 [@media(min-width:1921px)]:mt-40 max-w-4xl text-xl text-white/75 md:text-2xl [@media(min-width:1921px)]:text-5xl [@media(min-width:1921px)]:max-w-[70%] [@media(min-width:1921px)]:leading-[1.6]">
           Una landing pensada para impactar: catálogo visual de herramientas,
           tutoriales guiados y casos de uso reales para transformar clases y
           aprendizaje.
         </p>
 
         <div
-          class="mt-10 flex flex-col sm:flex-row w-full items-center justify-center gap-4 sm:gap-8 md:gap-16"
+          class="mt-10 [@media(min-width:1921px)]:mt-24 flex flex-col sm:flex-row w-full items-center justify-center gap-4 sm:gap-8 md:gap-16 [@media(min-width:1921px)]:gap-24"
         >
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="w-full sm:w-auto rounded-xl bg-white px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-slate-900 hover:scale-[1.03] transition-all whitespace-nowrap"
+            class="w-full sm:w-auto rounded-xl bg-white px-6 md:px-8 [@media(min-width:1921px)]:px-16 py-3 md:py-4 [@media(min-width:1921px)]:py-10 text-base md:text-xl [@media(min-width:1921px)]:text-5xl font-bold text-slate-900 hover:scale-[1.03] transition-all whitespace-nowrap"
           >
             Ver herramientas
           </button>
           <button
             on:click={() => scrollToSection("tutoriales")}
-            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 md:px-8 py-3 md:py-4 text-base md:text-xl font-bold text-white hover:bg-white/10 transition-all whitespace-nowrap"
+            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 md:px-8 [@media(min-width:1921px)]:px-16 py-3 md:py-4 [@media(min-width:1921px)]:py-10 text-base md:text-xl [@media(min-width:1921px)]:text-5xl font-bold text-white hover:bg-white/10 transition-all whitespace-nowrap"
           >
             Ver tutoriales
           </button>
         </div>
       </div>
 
-      <div class="mt-12 grid gap-4 sm:grid-cols-3">
+      <div class="mt-12 [@media(min-width:1921px)]:mt-64 grid gap-4 [@media(min-width:1921px)]:gap-24 sm:grid-cols-3">
         {#each stats as stat, i}
           <article
-            class="scroll-reveal glass-card tilt-card p-5"
+            class="scroll-reveal glass-card tilt-card p-5 [@media(min-width:1921px)]:p-24"
             use:tilt3d
             use:revealOnScroll
             data-reveal-delay={`${i * 120}ms`}
           >
             <p
-              class="text-3xl font-black"
+              class="text-3xl [@media(min-width:1921px)]:text-8xl font-black"
               use:countUp={{
                 end: stat.value,
                 prefix: stat.prefix,
@@ -481,7 +481,7 @@
             >
               {stat.prefix}0{stat.suffix}
             </p>
-            <p class="mt-1 text-sm text-white/70">{stat.label}</p>
+            <p class="mt-1 [@media(min-width:1921px)]:mt-16 text-sm [@media(min-width:1921px)]:text-6xl text-white/70 [@media(min-width:1921px)]:leading-[1.4]">{stat.label}</p>
           </article>
         {/each}
       </div>
@@ -489,32 +489,32 @@
 
     <section
       id="impacto"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24"
+      class="scroll-reveal section-anchor mx-auto max-w-7xl [@media(min-width:1921px)]:max-w-[90%] px-6 pb-24 [@media(min-width:1921px)]:pb-64"
       use:revealOnScroll
     >
       <div
-        class="rounded-3xl border border-white/15 bg-linear-to-r from-rose-500/20 via-orange-400/20 to-amber-300/20 p-8 md:p-12"
+        class="rounded-3xl border border-white/15 bg-linear-to-r from-rose-500/20 via-orange-400/20 to-amber-300/20 p-8 md:p-12 [@media(min-width:1921px)]:p-40"
         use:tilt3d
       >
-        <h2 class="text-3xl font-black text-white md:text-5xl">
+        <h2 class="impact-title-giant text-3xl font-black text-white md:text-5xl">
           Una experiencia que sí se siente ExpoMinera 2026
         </h2>
-        <p class="mt-4 max-w-3xl text-lg text-white/80">
+        <p class="mt-4 [@media(min-width:1921px)]:mt-20 max-w-3xl [@media(min-width:1921px)]:max-w-none text-lg [@media(min-width:1921px)]:text-6xl text-white/80 [@media(min-width:1921px)]:leading-[1.6]">
           Diseño inmersivo, navegación clara y foco educativo. Esta landing
           queda lista para crecer con más IA, más tutoriales y métricas de
           adopción en tiempo real.
         </p>
 
-        <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
+        <div class="mt-8 [@media(min-width:1921px)]:mt-24 flex flex-col sm:flex-row items-center gap-4 [@media(min-width:1921px)]:gap-16">
           <button
             on:click={() => scrollToSection("herramientas")}
-            class="w-full sm:w-auto rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 hover:scale-[1.03] transition-all"
+            class="w-full sm:w-auto rounded-2xl bg-white px-6 [@media(min-width:1921px)]:px-20 py-3 [@media(min-width:1921px)]:py-12 font-semibold [@media(min-width:1921px)]:text-5xl text-slate-900 hover:scale-[1.03] transition-all"
           >
             Explorar ahora
           </button>
           <button
             on:click={() => openNotebookDemo()}
-            class="w-full sm:w-auto rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/15 transition-all"
+            class="w-full sm:w-auto rounded-2xl border border-white/20 bg-white/10 px-6 [@media(min-width:1921px)]:px-20 py-3 [@media(min-width:1921px)]:py-12 font-semibold [@media(min-width:1921px)]:text-5xl text-white hover:bg-white/15 transition-all"
           >
             Abrir demo de tutorial NotebookLM
           </button>
@@ -524,34 +524,34 @@
 
     <section
       id="tutoriales"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-24 md:pb-32"
+      class="scroll-reveal section-anchor mx-auto max-w-7xl [@media(min-width:1921px)]:max-w-[90%] px-6 pb-12 md:pb-16 [@media(min-width:1921px)]:pb-48"
       use:revealOnScroll
     >
-      <div class="glass-card tilt-card p-8 md:p-12" use:tilt3d>
-        <p class="text-sm uppercase tracking-[0.2em] text-white/50">
+      <div class="glass-card tilt-card p-8 md:p-12 [@media(min-width:1921px)]:p-40" use:tilt3d>
+        <p class="tutorial-badge-giant text-sm uppercase tracking-[0.2em] text-white/50">
           Aprendizaje guiado
         </p>
-        <h2 class="mt-3 text-3xl font-extrabold text-white md:text-4xl">
+        <h2 class="tutorial-title-giant mt-3 text-3xl font-extrabold text-white md:text-4xl">
           Tutoriales dentro de la app
         </h2>
-        <p class="mt-3 max-w-2xl text-white/70">
+        <p class="tutorial-desc-giant mt-3 max-w-2xl text-white/70">
           Inspirado en plataformas de aprendizaje modernas: pasos cortos,
           visuales y orientados a resultados para que cualquiera pueda empezar
           sin fricción.
         </p>
 
-        <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <div class="mt-8 [@media(min-width:1921px)]:mt-20 grid gap-4 [@media(min-width:1921px)]:gap-10 md:grid-cols-3">
           {#each tutorials as item, i}
             <article
-              class="scroll-reveal rounded-2xl border border-white/15 bg-white/5 p-5"
+              class="scroll-reveal rounded-2xl border border-white/15 bg-white/5 p-5 [@media(min-width:1921px)]:p-20"
               use:revealOnScroll
               data-reveal-delay={`${i * 140}ms`}
             >
-              <p class="text-xs tracking-[0.2em] text-amber-300">
+              <p class="step-badge-giant text-xs tracking-[0.2em] text-amber-300">
                 PASO {item.step}
               </p>
-              <h3 class="mt-2 text-xl font-bold text-white">{item.title}</h3>
-              <p class="mt-2 text-sm text-white/70">{item.text}</p>
+              <h3 class="step-title-giant mt-2 text-xl font-bold text-white">{item.title}</h3>
+              <p class="step-text-giant mt-2 text-sm text-white/70">{item.text}</p>
             </article>
           {/each}
         </div>
@@ -560,26 +560,26 @@
 
     <section
       id="herramientas"
-      class="scroll-reveal section-anchor mx-auto max-w-7xl px-6 pb-20"
+      class="scroll-reveal section-anchor mx-auto max-w-7xl [@media(min-width:1921px)]:max-w-[90%] px-6 pb-20 [@media(min-width:1921px)]:pb-64 [@media(min-width:1921px)]:pt-12"
       use:revealOnScroll
     >
-      <div class="glass-card p-6 md:p-8 mb-8">
-        <div class="mb-6">
-          <p class="text-sm uppercase tracking-[0.2em] text-white/50">
+      <div class="glass-card p-6 md:p-8 [@media(min-width:1921px)]:p-40 mb-8">
+        <div class="mb-10 [@media(min-width:1921px)]:mb-24">
+          <p class="tools-badge-giant text-sm uppercase tracking-[0.2em] text-white/50">
             Elegidas para el aula
           </p>
-          <h2 class="mt-2 text-3xl font-extrabold text-white md:text-4xl">
+          <h2 class="tools-title-giant mt-2 text-3xl font-extrabold text-white md:text-4xl">
             Herramientas destacadas
           </h2>
         </div>
 
-        <div class="flex flex-wrap gap-2 md:gap-3">
+        <div class="flex flex-wrap gap-2 md:gap-3 [@media(min-width:1921px)]:gap-8">
           {#each categories as category}
             <button
               on:click={() => {
                 activeCategory = category.id;
               }}
-              class="rounded-full border px-4 py-2 text-xs md:text-sm font-medium transition {activeCategory ===
+              class="rounded-full border px-4 [@media(min-width:1921px)]:px-16 py-2 [@media(min-width:1921px)]:py-8 text-xs md:text-sm [@media(min-width:1921px)]:text-4xl font-medium transition {activeCategory ===
               category.id
                 ? 'border-white bg-white text-slate-900'
                 : 'border-white/20 bg-white/5 text-white/80 hover:bg-white/10'}"
@@ -593,7 +593,7 @@
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {#each filteredTools as tool, idx}
           <article
-            class="scroll-reveal glass-card tilt-card group p-5"
+            class="scroll-reveal tool-card-giant glass-card tilt-card group p-5"
             use:tilt3d
             use:revealOnScroll
             data-reveal-delay={`${idx * 80}ms`}
@@ -603,57 +603,61 @@
                 <img
                   src={tool.icon}
                   alt={`Logo de ${tool.name}`}
-                  class="h-10 w-10 object-contain rounded-md bg-white/10 p-1"
+                  class="h-10 w-10 [@media(min-width:1921px)]:h-32 [@media(min-width:1921px)]:w-32 object-contain rounded-md bg-white/10 p-1"
                 />
               {:else}
-                <span class="text-4xl">{tool.icon}</span>
+                <span class="text-4xl [@media(min-width:1921px)]:text-[8rem]">{tool.icon}</span>
               {/if}
 
               <span
-                class="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/80"
+                class="tool-badge-top-giant rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/80"
                 >{tool.badge}</span
               >
             </div>
 
-            <h3 class="mt-4 text-2xl font-bold text-white">{tool.name}</h3>
-            <p class="mt-2 text-sm text-white/75">{tool.description}</p>
+            <h3 class="tool-name-giant mt-4 text-2xl font-bold text-white">{tool.name}</h3>
+            <p class="tool-desc-giant mt-2 text-sm text-white/75">{tool.description}</p>
 
-            <div class="mt-4 flex flex-wrap gap-2">
+            <div class="mt-4 [@media(min-width:1921px)]:mt-10 flex flex-wrap gap-2 [@media(min-width:1921px)]:gap-4">
               {#each tool.tags as tag}
                 <span
-                  class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80"
+                  class="tool-tag-giant rounded-md bg-white/10 px-2 py-0.5 text-[10px] text-white/60"
                   >{tag}</span
                 >
               {/each}
             </div>
 
-            <div class="mt-6 flex items-center justify-between gap-2">
-              <span
-                class="flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-amber-300"
-                aria-label={`Dificultad ${tool.difficulty} de 3`}
-              >
-                Dificultad
-                <span class="ml-1 text-base tracking-normal">
+            <div
+              class="mt-6 [@media(min-width:1921px)]:mt-12 flex items-center justify-between border-t border-white/10 pt-4 [@media(min-width:1921px)]:pt-10"
+            >
+              <div class="flex items-center gap-1.5 [@media(min-width:1921px)]:gap-3">
+                <span class="tool-meta-giant text-xs text-white/40">Dificultad</span>
+                <div class="flex gap-0.5 [@media(min-width:1921px)]:gap-2">
                   {#each Array(3) as _, i}
-                    <span>{i < tool.difficulty ? "★" : "☆"}</span>
+                    <span
+                      class="text-[10px] [@media(min-width:1921px)]:text-5xl {i < tool.difficulty
+                        ? 'text-yellow-400'
+                        : 'text-white/20'}"
+                    >
+                      ★
+                    </span>
                   {/each}
-                </span>
-              </span>
-              <a
-                href={tool.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:border-white hover:bg-white/10"
+                </div>
+              </div>
+
+              <button
+                on:click={() => window.open(tool.url, "_blank")}
+                class="tool-site-btn-giant rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:border-white hover:bg-white/10"
               >
                 Ir al sitio
-              </a>
+              </button>
             </div>
 
             <button
               on:click={tool.hasDemo
                 ? () => openNotebookDemo(tool.demoKey)
                 : null}
-              class="mt-3 w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all {tool.hasDemo
+              class="tool-demo-btn-giant mt-3 w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all {tool.hasDemo
                 ? 'border-cyan-300/40 bg-cyan-400/10 text-cyan-200 hover:bg-cyan-400/20'
                 : 'border-white/10 bg-white/5 text-white/30 cursor-not-allowed opacity-50'}"
             >
@@ -681,20 +685,19 @@
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
+          class="tutorial-sidebar-giant flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
         >
-          <!-- Header & Progress -->
           <div
-            class="px-6 py-4 md:px-7 md:py-6 border-b border-white/10 flex-none"
+            class="tutorial-sidebar-header-giant p-4 md:p-6 space-y-4 flex-none border-b border-white/10"
           >
-            <div class="mb-3 md:mb-5 flex items-center justify-between">
-              <div>
+            <div class="flex items-center justify-between mb-4 [@media(min-width:1921px)]:mb-12">
+              <div class="flex flex-col">
                 <p
-                  class="text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
+                  class="tutorial-step-badge-giant text-xs uppercase tracking-[0.2em] text-cyan-200 font-bold mb-1"
                 >
                   {currentTutorial.label} · Guiado
                 </p>
-                <h3 class="text-xl md:text-2xl font-bold text-white">
+                <h3 class="tutorial-brand-giant text-xl md:text-2xl font-bold text-white">
                   ExpoMinera 2026
                 </h3>
               </div>
@@ -711,13 +714,13 @@
               <div
                 class="flex justify-between text-sm mb-2 font-bold text-gray-400"
               >
-                <span>Progreso</span>
-                <span
+                <span class="tutorial-progress-text-giant">Progreso</span>
+                <span class="tutorial-progress-text-giant"
                   >Paso {notebookStep + 1} / {currentTutorialSteps.length}</span
                 >
               </div>
               <div
-                class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden"
+                class="tutorial-progress-bar-giant h-1.5 w-full bg-white/10 rounded-full overflow-hidden"
               >
                 <div
                   class="h-full bg-linear-to-r transition-all duration-500 {currentTutorial.accent}"
@@ -728,26 +731,26 @@
           </div>
 
           <div
-            class="flex-1 min-h-0 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-5"
+            class="tutorial-content-scroll-giant flex-1 min-h-0 overflow-y-auto px-6 py-4 md:px-7 md:py-5 custom-scrollbar space-y-4 md:space-y-5"
           >
-            <h4 class="text-2xl md:text-3xl font-black leading-tight mb-4">
+            <h4 class="tutorial-step-title-giant text-2xl md:text-3xl font-black leading-tight mb-4">
               <span class="text-cyan-400">Paso {notebookStep + 1}:</span>
               <span class="text-white"
                 >{currentTutorialSteps[notebookStep].title}</span
               >
             </h4>
 
-            <p class="text-base md:text-lg leading-snug text-white/80">
+            <p class="tutorial-step-desc-giant text-base md:text-lg leading-snug text-white/80">
               {currentTutorialSteps[notebookStep].description}
             </p>
 
             <div
-              class="bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl mt-6 md:mt-8"
+              class="tutorial-step-tip-giant bg-cyan-400/10 border border-cyan-400/30 p-4 md:p-5 rounded-2xl mt-6 md:mt-8"
             >
               <p
                 class="text-sm md:text-base font-medium leading-snug text-cyan-100 flex gap-2 md:gap-3"
               >
-                <span class="text-xl md:text-2xl shrink-0">💡</span>
+                <span class="tutorial-step-tip-icon-giant text-xl md:text-2xl shrink-0">💡</span>
                 {currentTutorialSteps[notebookStep].tip}
               </p>
             </div>
@@ -768,12 +771,12 @@
 
           <!-- Navigation Buttons -->
           <div
-            class="p-4 md:p-6 border-t border-white/10 flex-none flex items-center justify-between gap-2 md:gap-4"
+            class="tutorial-nav-container-giant p-4 md:p-6 border-t border-white/10 flex-none flex items-center justify-between gap-2 md:gap-4"
           >
             <button
               on:click={prevNotebookStep}
               disabled={notebookStep === 0}
-              class="flex-1 py-3 md:py-4 border rounded-xl border-white/20 text-white font-bold text-sm md:text-base hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              class="tutorial-nav-btn-giant flex-1 py-3 md:py-4 border rounded-xl border-white/20 text-white font-bold text-sm md:text-base hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
               ← Anterior
             </button>
@@ -781,14 +784,14 @@
             {#if notebookStep < currentTutorialSteps.length - 1}
               <button
                 on:click={nextNotebookStep}
-                class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
+                class="tutorial-nav-btn-giant flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-white text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
               >
                 Siguiente →
               </button>
             {:else}
               <button
                 on:click={closeNotebookDemo}
-                class="flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-emerald-400 text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
+                class="tutorial-nav-btn-giant flex-1 md:flex-2 py-3 md:py-4 px-4 md:px-6 rounded-xl bg-emerald-400 text-slate-950 font-black text-sm md:text-base hover:scale-[1.02] active:scale-95 transition-all"
               >
                 Finalizar ✓
               </button>
@@ -989,6 +992,168 @@
       animation: none !important;
       transition: none !important;
       transform: none !important;
+    }
+  }
+
+  @media (min-width: 1900px) {
+    .impact-title-giant {
+      font-size: 8rem !important;
+      font-weight: 900 !important;
+      line-height: 1.1 !important;
+      margin-bottom: 3rem !important;
+      display: block !important;
+      font-family: var(--heading) !important;
+    }
+    .tutorial-badge-giant {
+      font-size: 2.5rem !important;
+      margin-bottom: 1.5rem !important;
+      display: block !important;
+    }
+    .tutorial-title-giant {
+      font-size: 8rem !important;
+      line-height: 1.1 !important;
+      margin-bottom: 3rem !important;
+      display: block !important;
+    }
+    .tutorial-desc-giant {
+      font-size: 4rem !important;
+      line-height: 1.6 !important;
+      max-width: 85% !important;
+      margin-bottom: 5rem !important;
+      display: block !important;
+    }
+    .step-badge-giant {
+      font-size: 1.8rem !important;
+      margin-bottom: 1.5rem !important;
+      display: block !important;
+    }
+    .step-title-giant {
+      font-size: 5rem !important;
+      margin-bottom: 1.5rem !important;
+      display: block !important;
+    }
+    .step-text-giant {
+      font-size: 2.2rem !important;
+      line-height: 1.5 !important;
+      display: block !important;
+    }
+    .tools-badge-giant {
+      font-size: 2.5rem !important;
+      margin-bottom: 2rem !important;
+      display: block !important;
+    }
+    .tools-title-giant {
+      font-size: 8rem !important;
+      line-height: 1.1 !important;
+      margin-bottom: 4rem !important;
+      display: block !important;
+    }
+    .glass-card {
+      border-radius: 2.5rem !important;
+    }
+    .tool-card-giant {
+      padding: 6rem !important;
+      border-radius: 3rem !important;
+    }
+    .tool-name-giant {
+      font-size: 6rem !important;
+      margin-top: 3rem !important;
+      margin-bottom: 2rem !important;
+      display: block !important;
+    }
+    .tool-desc-giant {
+      font-size: 3.2rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 3rem !important;
+      display: block !important;
+    }
+    .tool-tag-giant {
+      font-size: 2rem !important;
+      padding: 1rem 2.5rem !important;
+    }
+    .tool-meta-giant {
+      font-size: 3.5rem !important;
+    }
+    .tool-badge-top-giant {
+      font-size: 2.2rem !important;
+      padding: 1rem 3rem !important;
+      border-radius: 5rem !important;
+    }
+    .tool-site-btn-giant {
+      font-size: 2.5rem !important;
+      padding: 1.5rem 4rem !important;
+      border-radius: 1.2rem !important;
+      border-width: 3px !important;
+    }
+    .tool-demo-btn-giant {
+      font-size: 2.8rem !important;
+      padding: 2.5rem !important;
+      border-radius: 1.5rem !important;
+      margin-top: 3.5rem !important;
+    }
+
+    /* Tutorial Modal Giant Scaling */
+    .tutorial-sidebar-giant {
+      width: 1100px !important;
+      border-radius: 2.5rem 0 0 2.5rem !important;
+    }
+    .tutorial-sidebar-header-giant {
+      padding-left: 5rem !important;
+      padding-right: 5rem !important;
+      padding-top: 4rem !important;
+      padding-bottom: 3rem !important;
+    }
+    .tutorial-step-badge-giant {
+      font-size: 2rem !important;
+      margin-bottom: 1.2rem !important;
+      display: block !important;
+    }
+    .tutorial-brand-giant {
+      font-size: 5rem !important;
+      margin-bottom: 2rem !important;
+      display: block !important;
+    }
+    .tutorial-progress-text-giant {
+      font-size: 2.2rem !important;
+      margin-bottom: 0.8rem !important;
+    }
+    .tutorial-progress-bar-giant {
+      height: 1.2rem !important;
+      margin-top: 0.4rem !important;
+    }
+    .tutorial-content-scroll-giant {
+      padding: 5rem !important;
+    }
+    .tutorial-step-title-giant {
+      font-size: 6rem !important;
+      line-height: 1.1 !important;
+      margin-bottom: 2.5rem !important;
+    }
+    .tutorial-step-desc-giant {
+      font-size: 3rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 2.5rem !important;
+    }
+    .tutorial-step-tip-giant {
+      padding: 3.5rem !important;
+      border-radius: 2rem !important;
+      margin-top: 3rem !important;
+      display: block !important;
+    }
+    .tutorial-step-tip-giant p {
+      font-size: 2.2rem !important;
+      line-height: 1.4 !important;
+    }
+    .tutorial-step-tip-icon-giant {
+      font-size: 4rem !important;
+    }
+    .tutorial-nav-container-giant {
+      padding: 3rem !important;
+    }
+    .tutorial-nav-btn-giant {
+      font-size: 2.8rem !important;
+      padding: 3rem !important;
+      border-radius: 1.5rem !important;
     }
   }
 
