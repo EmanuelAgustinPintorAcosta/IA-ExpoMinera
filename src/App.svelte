@@ -679,13 +679,13 @@
       transition:fade={{ duration: 250 }}
     >
       <div
-        class="w-full h-full max-h-screen bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
+        class="w-full h-full max-h-screen bg-slate-950 flex flex-col lg:flex-row overflow-hidden shadow-2xl md:rounded-3xl border-0 md:border md:border-white/10"
         style="height: 100%; max-height: 100dvh;"
         transition:scale={{ duration: 400, start: 0.95, opacity: 0 }}
       >
         <!-- Left Sidebar: Instructions -->
         <div
-          class="tutorial-sidebar-giant flex flex-col min-h-0 flex-1 md:flex-none md:h-full w-full md:w-100 lg:w-112.5 bg-slate-900 border-b md:border-b-0 md:border-r border-white/10"
+          class="tutorial-sidebar-giant flex flex-col min-h-0 flex-1 lg:flex-none lg:h-full w-full lg:w-100 lg:w-112.5 bg-slate-900 border-b lg:border-b-0 lg:border-r border-white/10"
         >
           <div
             class="tutorial-sidebar-header-giant p-4 md:p-6 space-y-4 flex-none border-b border-white/10"
@@ -801,7 +801,7 @@
 
         <!-- Right Side: Visual Mockup (Desktop solo) -->
         <div
-          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 overflow-hidden hidden md:flex"
+          class="relative min-h-0 flex-1 bg-black items-center justify-center p-0 overflow-hidden hidden lg:flex"
         >
           <button
             on:click={closeNotebookDemo}
