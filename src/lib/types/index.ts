@@ -35,7 +35,9 @@ export interface TutorialStep {
   title: string;
   description: string;
   content: string;
+  tip?: string;
   screenshot?: string;
+  image?: string; // Add image field to match Dashboard usage
   action?: {
     type: 'click' | 'input' | 'scroll';
     target: string;

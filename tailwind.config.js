@@ -3,6 +3,10 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      screens: {
+        '3xl': '1900px',
+        '4xl': '2560px',
+      },
       colors: {
         // Colores de San Juan
         'sanjuan-red': '#C41E3A',
