@@ -20,7 +20,10 @@
           >
             ExpoMinera 2026
           </span>
-          <span class="hidden text-white/30 md:inline [@media(min-width:1921px)]:text-5xl">·</span>
+          <span
+            class="hidden text-white/30 md:inline [@media(min-width:1921px)]:text-5xl"
+            >·</span
+          >
 
           <div class="flex items-center gap-2 [@media(min-width:1921px)]:gap-6">
             <img
@@ -28,7 +31,8 @@
               alt="Logo IA en la Mochila"
               class="h-7 [@media(min-width:1921px)]:h-24 w-auto object-contain drop-shadow-md"
             />
-            <span class="text-sm [@media(min-width:1921px)]:text-5xl font-medium tracking-wide text-white/90"
+            <span
+              class="text-sm [@media(min-width:1921px)]:text-5xl font-medium tracking-wide text-white/90"
               >IA en la Mochila</span
             >
           </div>
@@ -42,7 +46,9 @@
       </p>
     </div>
 
-    <div class="flex flex-col items-center gap-2.5 [@media(min-width:1921px)]:gap-8 md:items-end">
+    <div
+      class="flex flex-col items-center gap-2.5 [@media(min-width:1921px)]:gap-8 md:items-end"
+    >
       <span
         class="flex items-center gap-1.5 [@media(min-width:1921px)]:gap-4 text-xs [@media(min-width:1921px)]:text-4xl uppercase tracking-widest text-white/40"
       >
@@ -62,9 +68,11 @@
         Desarrollado por
       </span>
 
-      <div class="flex flex-wrap justify-center gap-x-4 [@media(min-width:1921px)]:gap-x-12 gap-y-2 [@media(min-width:1921px)]:gap-y-6 md:justify-end">
+      <div
+        class="flex flex-wrap justify-center gap-x-4 [@media(min-width:1921px)]:gap-x-12 gap-y-2 [@media(min-width:1921px)]:gap-y-6 md:justify-end"
+      >
         <a
-          href="https://marcelam-portfolio.vercel.app/"
+          href="https://mara-brizuela.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           class="group relative text-sm [@media(min-width:1921px)]:text-5xl font-medium text-white/70 transition-colors hover:text-white"
@@ -74,7 +82,10 @@
             class="absolute -bottom-1 left-0 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
-        <span class="select-none text-white/20 [@media(min-width:1921px)]:text-4xl">/</span>
+        <span
+          class="select-none text-white/20 [@media(min-width:1921px)]:text-4xl"
+          >/</span
+        >
 
         <a
           href="https://marcelam-portfolio.vercel.app/"
@@ -87,10 +98,13 @@
             class="absolute -bottom-1 left-0 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
-        <span class="select-none text-white/20 [@media(min-width:1921px)]:text-5xl">/</span>
+        <span
+          class="select-none text-white/20 [@media(min-width:1921px)]:text-5xl"
+          >/</span
+        >
 
         <a
-          href="https://marcelam-portfolio.vercel.app/"
+          href="https://mi-portfolio-463a4.web.app"
           target="_blank"
           rel="noopener noreferrer"
           class="group relative text-sm [@media(min-width:1921px)]:text-5xl font-medium text-white/70 transition-colors hover:text-white"
